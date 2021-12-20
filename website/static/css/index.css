@@ -13,6 +13,7 @@
 }
 
 .main .contents {
+    width: 100%;
     position: absolute;
     top: 175px;
     left: 0;
@@ -20,9 +21,9 @@
 }
 
 .main .contents .text {
-    height: 200px;
+    height: 100px;
     color: white;
-    padding-left: 50px;
+    text-align: center;
 }
 
 .main .contents .text h1, .main .contents .text h2 {
@@ -36,4 +37,39 @@
 
 .main .contents .text h2 {
     font-weight:normal;
+    letter-spacing: 5px;
+}
+
+.main .contents .text h4 {
+    font-weight: 100;
+    margin-top: 50px;
+}
+
+.main .contents .buttons {
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.main .contents .buttons button {
+    width: 100%;
+    height: 50px;
+
+    color: white;
+    font-size: 20px;
+    border-radius: 30px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main .contents .buttons button.filled {
+    background-color: #6392bb;
+}
+
+.main .contents .buttons button.transparent {
+    background-color: transparent;
+    border: 2px solid white;
 }
