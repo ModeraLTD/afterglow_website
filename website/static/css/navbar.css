@@ -31,13 +31,13 @@ body {
     height: 30px;
 }
 
-.navbar .navitem:nth-child(2) {
+.navbar .navitem:nth-child(2) img {
+    display: block;
+    max-height: 230px;
+    max-height: 40px;
     width: auto;
-    height: 50px;
-    max-height: 50px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 50px;
+    height: auto;
+    margin-top: 5px;
 }
 
 .navbar .navitem:nth-child(3) {
