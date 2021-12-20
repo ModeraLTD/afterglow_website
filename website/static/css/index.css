@@ -1,0 +1,39 @@
+.section {
+    width: 100%;
+}
+
+.main {
+    height: 600px;
+}
+
+.main .bgimg {
+    background: url('https://via.placeholder.com/600');
+    filter: brightness(0.6);
+    height: 600px;
+}
+
+.main .contents {
+    position: absolute;
+    top: 175px;
+    left: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main .contents .text {
+    height: 200px;
+    color: white;
+    padding-left: 50px;
+}
+
+.main .contents .text h1, .main .contents .text h2 {
+    margin: 0;
+}
+
+.main .contents .text h1 {
+    font-size: 60px;
+    letter-spacing: 5px;
+}
+
+.main .contents .text h2 {
+    font-weight:normal;
+}
