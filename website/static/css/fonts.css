@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Bebas';
+    src: url('fonts/Bebas-Regular.eot');
+    src: url('fonts/Bebas-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Bebas-Regular.woff2') format('woff2'),
+        url('fonts/Bebas-Regular.woff') format('woff'),
+        url('fonts/Bebas-Regular.ttf') format('truetype'),
+        url('fonts/Bebas-Regular.svg#Bebas-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bebas';
+    src: url('fonts/Bebas-Regular_1.eot');
+    src: url('fonts/Bebas-Regular_1.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Bebas-Regular_1.woff2') format('woff2'),
+        url('fonts/Bebas-Regular_1.woff') format('woff'),
+        url('fonts/Bebas-Regular_1.ttf') format('truetype'),
+        url('fonts/Bebas-Regular_1.svg#Bebas-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BigNoodleTitling';
+    src: url('fonts/BigNoodleTitling.eot');
+    src: url('fonts/BigNoodleTitling.eot?#iefix') format('embedded-opentype'),
+        url('fonts/BigNoodleTitling.woff2') format('woff2'),
+        url('fonts/BigNoodleTitling.woff') format('woff'),
+        url('fonts/BigNoodleTitling.ttf') format('truetype'),
+        url('fonts/BigNoodleTitling.svg#BigNoodleTitling') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BigNoodleTitling';
+    src: url('fonts/BigNoodleTitling-Oblique.eot');
+    src: url('fonts/BigNoodleTitling-Oblique.eot?#iefix') format('embedded-opentype'),
+        url('fonts/BigNoodleTitling-Oblique.woff2') format('woff2'),
+        url('fonts/BigNoodleTitling-Oblique.woff') format('woff'),
+        url('fonts/BigNoodleTitling-Oblique.ttf') format('truetype'),
+        url('fonts/BigNoodleTitling-Oblique.svg#BigNoodleTitling-Oblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
