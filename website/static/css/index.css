@@ -1,3 +1,7 @@
+body {
+    overflow-x: none;
+}
+
 .section {
     width: 100%;
 }
@@ -33,8 +37,9 @@
 }
 
 .main .contents .text h1 {
-    font-size: 60px;
+    font-size: 75px;
     letter-spacing: 5px;
+    font-family: 'Bebas';
 }
 
 .main .contents .text h2 {
@@ -48,7 +53,7 @@
 }
 
 .main .contents .buttons {
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
     box-sizing: border-box;
     padding-left: 50px;
@@ -95,12 +100,14 @@
     padding: 20px;
     width: calc(100% - 40px);
     color: black;
-    font-family: 'BigNoodleTitling'; 
     text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .about h1 {
     font-size: 40px;
+    font-family: 'BigNoodleTitling';
+    letter-spacing: 5px; 
 }
 
 .about h3 {
