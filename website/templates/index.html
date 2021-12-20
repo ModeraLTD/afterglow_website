@@ -12,74 +12,88 @@
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/index.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <script src="{% static 'js/navbar.js' %}"></script>
         <script src="" async defer></script>
     </head>
     <body>
-        <div class="navbar">
-            <div class="navitem">
-                <img src="{% static 'images/menu.svg' %}" alt="menu">
+        <!-- Main body section -->
+        <div class="body">
+            <div class="navbar">
+                <div class="navitem" onclick="openMenu();">
+                    <img src="{% static 'images/menu.svg' %}" alt="menu">
+                </div>
+                <div class="navitem">
+                    <h2>LOGO</h2>
+                </div>
+                <div class="navitem">
+                    <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/>
+                </div>
             </div>
-            <div class="navitem">
-                <h2>LOGO</h2>
+    
+            <!-- Main section -->
+            <div class="section main">
+                <div class="bgimg"></div>
+                <div class="contents">
+                    <div class="text">
+                        <h1>DISCOVER</h1>
+                        <h2>the best aesthetics</h2>
+                    </div>
+                    <div class="buttons">
+                        <button class="filled">Book now</button>
+                        <button class="transparent">Our services</button>
+                    </div>
+                    <div class="text">
+                        <h4>Based in Luton, England</h4>
+                    </div>
+                </div>
             </div>
-            <div class="navitem">
-                <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/>
+    
+            <div class="sectiontransition"></div>
+    
+            <!-- About & Social media -->
+            <div class="section about">
+                <h1>AfterGlow</h1>
+                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis nisi eu eros accumsan efficitur vitae ultrices nunc. Fusce quis mi diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rhoncus, felis ut commodo tempus, risus lectus maximus metus, id porttitor erat elit non sem.</h3>
+                <br/>
+                <h4>Follow us!</h4>
+                <div class="media_container">
+                    <!-- Facebook -->
+                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/facebook-new.png"/></a>
+    
+                    <!-- Instagram -->
+                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/instagram-new.png"/></a>
+    
+                    <!-- Twitter -->
+                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/twitter-circled.png"/></a>
+    
+                    <!-- Youtube -->
+                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png"/></a>
+                </div>
+            </div>
+    
+            <!-- Footer -->
+            <div class="footer">
+                <div class="main">
+                    <h3>AfterGlow</h3>
+                    <div class="links">
+                        <a href="/">Home</a>
+                        <a href="/404">Bookings</a>
+                        <a href="/contact">Contact us</a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
+                </div>
             </div>
         </div>
 
-        <!-- Main section -->
-        <div class="section main">
-            <div class="bgimg"></div>
-            <div class="contents">
-                <div class="text">
-                    <h1>DISCOVER</h1>
-                    <h2>the best aesthetics</h2>
-                </div>
-                <div class="buttons">
-                    <button class="filled">Book now</button>
-                    <button class="transparent">Our services</button>
-                </div>
-                <div class="text">
-                    <h4>Based in Luton, England</h4>
-                </div>
-            </div>
-        </div>
-
-        <div class="sectiontransition"></div>
-
-        <!-- About & Social media -->
-        <div class="section about">
-            <h1>AfterGlow</h1>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis nisi eu eros accumsan efficitur vitae ultrices nunc. Fusce quis mi diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rhoncus, felis ut commodo tempus, risus lectus maximus metus, id porttitor erat elit non sem.</h3>
-            <br/>
-            <h4>Follow us!</h4>
-            <div class="media_container">
-                <!-- Facebook -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/facebook-new.png"/></a>
-
-                <!-- Instagram -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/instagram-new.png"/></a>
-
-                <!-- Twitter -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/twitter-circled.png"/></a>
-
-                <!-- Youtube -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png"/></a>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div class="main">
-                <h3>AfterGlow</h3>
-                <div class="links">
-                    <a href="/">Home</a>
-                    <a href="/404">Bookings</a>
-                    <a href="/contact">Contact us</a>
-                </div>
-            </div>
-            <div class="copyright">
-                <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
+        <!-- Menu popup -->
+        <div class="menupopup" id="menupopup">
+            <button onclick="closeMenu();">X</button>
+            <div class="items">
+                <a href="/">HOME</a>
+                <a href="/services">SERVICES</a>
+                <a href="/contact">CONTACT</a>
             </div>
         </div>
     </body>
