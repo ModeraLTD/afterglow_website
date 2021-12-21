@@ -1,20 +1,18 @@
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponse
 from django.views.generic import ListView, FormView
-from .models import service, Booking
+from .models import Service, Booking
 from .forms import AvailabilityForm
 from website.booking_functions.availability import check_availability
 # Create your views here.
 def index(request):
     return render(request, "index.html")
 
-class serviceList(ListView):
-    model = service
+class ServiceList(ListView):
+    model = Service
 
 
-
-
-class bookingList(ListView):
+class BookingList(ListView):
     model = Booking
 
 class BookingView(FormView):
@@ -23,10 +21,10 @@ class BookingView(FormView):
     
     def form_valid(self, form):
         data = form.cleaned_data
-        service_list = service.objects.filter(category=data['service_category'])
+        service_list = Service.objects.filter(category=data['service_category'])
         available_service = []
         for serv in service_list:
-            if check_availability(service, data['bookin'], data['bookout']):
+            if check_availability(Service, data['bookin'], data['bookout']):
                 available_service.append(serv)
         if len(available_service) > 0:
             serv = available_service[0]
