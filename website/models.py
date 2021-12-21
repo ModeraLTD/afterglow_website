@@ -8,6 +8,46 @@ import uuid
 
 class Service(models.Model):
     """Model representing a specific service (cosmetic procedure)"""
+    """
+    Default:
+    Skin
+        derma planing					40
+        deluxe derma planing			75
+        custom made facial				55
+        chemical peel 					90
+        micro needling					99
+        deluxe microneedling with peel	140
+
+    Health
+        vitamin b12 injection			35
+        biotin injection				50
+        anti wrinkle injection			50
+
+    Non-Invasive
+        dermal fillers					50
+        lips 1ml						200
+        lips 2ml						325
+        nasolabial folds 1ml			180
+        nasolabial folds 2ml			300
+        marionette lines 1ml			180
+        chin 1ml						200
+        chin 2ml						325
+        cheeks	1ml						275
+        cheeks	2ml						400
+        non surgical rhinoplasty		375
+        filler disolve					125
+
+    Appearance
+        profhilo face and neck (1)		350
+        profhilo face and neck (2)		525
+        jalupro for dark circles		200
+        jalupro full face				300
+        jalupro full face and neck		375
+        injectable mesotherpay			175
+        aqualyx thing					50
+	    double chin 					300
+"""
+
     SERVICE_CATEGORIES = {
         ("SKIN", "Skin"),
         ("HEALTH", "Health"),
@@ -16,7 +56,7 @@ class Service(models.Model):
     }
 
     category = models.CharField(max_length=7, choices=SERVICE_CATEGORIES, default="SKIN")
-    name = models.CharField(max_length = 20)
+    name = models.CharField(max_length = 40)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self):
