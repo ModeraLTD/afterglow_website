@@ -24,7 +24,13 @@ class Service(models.Model):
 
 class Booking(models.Model):
     """Model representing an appointment/booking"""
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # randomly generated unique ID  - shouldn't be touched, modified nor used by the client/customer
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) # randomly generated booking ID
+    
+    # booking ID shown to the customer *and* client
+    # used for human referenced, as a secondary key
+    booking_id = models.CharField("Booking ID for user" ,max_length=8)
+    
     service = models.ForeignKey(Service, on_delete = models.CASCADE)
     time_from = models.DateTimeField("Starting date/time of booking")
     time_to = models.DateTimeField("Ending date/time of booking")
@@ -32,5 +38,5 @@ class Booking(models.Model):
     lastName = models.CharField("Last name of booker", max_length=32)
     address = models.CharField("Address of booker", max_length=256)
 
-    def __str__(self): #Is
+    def __str__(self): 
         return f'<{self.uuid}> [{self.time_from.strftime("%D %T")} - {self.time_to.strftime("%T")}] {Service.category} by {self.firstName} {self.lastName} at {self.address}'
