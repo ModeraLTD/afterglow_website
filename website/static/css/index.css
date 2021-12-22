@@ -9,10 +9,13 @@
 }
 
 .main .bgimg {
-    background: url('images/model1.jpg');
+    background: url('images/back.png');
     background-size: cover;
-    filter: brightness(0.6);
+    filter: brightness(0.5);
     height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .main .contents {
@@ -34,14 +37,18 @@
 }
 
 .main .contents .text h1 {
-    font-size: 65px;
+    font-size: 80px;
     letter-spacing: 5px;
-    font-family: 'vanilla_whale';
+    color: rgb(211, 193, 136);
+    font-family: 'Bebas';
 }
 
 .main .contents .text h2 {
     font-weight:normal;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
+    font-family: 'Bebas';
+    color:rgb(218, 209, 180);
+    font-size: 30px;
 }
 
 .main .contents .text h4 {
@@ -86,7 +93,7 @@
     width: 150%;
     max-width: 102%;
     height: 50px;
-    background-color: white;
+    background-color: black;
     margin-top: -20px;
     margin-left: -5px;
     transform: rotate(5deg);
