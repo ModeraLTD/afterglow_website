@@ -10,9 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'css/index.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/store.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
         <script src="{% static 'js/navbar.js' %}"></script>
+        <script src="{% static 'js/store.js' %}"></script>
         <script src="" async defer></script>
     </head>
     <body>
@@ -27,7 +28,19 @@
                     <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
                 </div>
                 <div class="navitem">
-                    <a href="/store"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/></a>
+                    <a href="/basket"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/></a>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="title">
+                    <h1>Store</h1>
+                    <div class="titlesep"></div>
+                </div>
+                <div class="catswiper">
+                    <img class="arrow" src="{% static 'css/images/left-arrow.svg' %}" onclick="swipeLeft();">
+                    <h2 id="catname">Non-invasive</h2>
+                    <img class="arrow" src="{% static 'css/images/right-arrow.svg' %}" onclick="swipeRight();">
                 </div>
             </div>
 
@@ -44,6 +57,16 @@
                 <div class="copyright">
                     <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
                 </div>
+            </div>
+        </div>
+
+        <!-- Menu popup -->
+        <div class="menupopup" id="menupopup">
+            <button onclick="closeMenu();">X</button>
+            <div class="items">
+                <a href="/">HOME</a>
+                <a href="/store">AESTHETICS</a>
+                <a href="/basket">BASKET</a>
             </div>
         </div>
     </body>

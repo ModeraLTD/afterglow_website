@@ -1,0 +1,47 @@
+.category {
+    height: 1000px;
+
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.category .title {
+    width: 100%;
+}
+
+.category .title h1 {
+    text-transform: uppercase;
+    font-family: "vanilla_whale";
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.category .title .titlesep {
+    width: 75%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.226);
+    margin: 0 auto;
+}
+
+/* SWIPER AND CAT DISPLAY */
+
+.category .catswiper {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.category .catswiper .arrow {
+    max-width: 50px;
+}
+
+.category .catswiper h2 {
+    margin: 0;
+    font-size: 32px;
+}
