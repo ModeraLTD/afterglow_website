@@ -4,7 +4,9 @@ from django.views.generic import ListView, FormView
 from .models import Service, Booking
 from .forms import AvailabilityForm
 from website.booking_functions.availability import check_availability
+
 # Create your views here.
+
 def index(request):
     return render(request, "index.html")
 

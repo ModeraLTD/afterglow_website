@@ -1,3 +1,7 @@
+:root {
+    --img-size: 100px;
+}
+
 .category {
     height: 1000px;
 
@@ -20,7 +24,7 @@
     margin-bottom: 5px;
 }
 
-.category .title .titlesep {
+.separator {
     width: 75%;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.226);
@@ -31,7 +35,7 @@
 
 .category .catswiper {
     width: 100%;
-    height: 100px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center
@@ -44,4 +48,86 @@
 .category .catswiper h2 {
     margin: 0;
     font-size: 32px;
+}
+
+/* PRODUCT LISTING */
+
+.category .products {
+    width: 100%;
+}
+
+.category .products .product {
+    width: 100%;
+    min-height: var(--img-size);
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 100px calc(100% - var(--img-size));
+}
+
+.category .products .product img {
+    max-width: var(--img-size);
+    max-height: var(--img-size);
+}
+
+.category .products .product .details {
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* title */
+.category .products .product .details h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-family: "vanilla_whale";
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.category .products .product .details .pricetime {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category .products .product .details .pricetime h4 {
+    margin: 0;
+    font-weight: light;
+}
+
+.category .products .product .details .pricetime h4:nth-child(1)::before {
+    content: '£';
+}
+.category .products .product .details .pricetime h4:nth-child(1) {color: rgb(46, 221, 46);}
+.category .products .product .details .pricetime h4:nth-child(2) {color: rgba(0, 0, 0, 0.555);}
+
+
+.category .products .product .details .actions {
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.category .products .product .details .actions button {
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.category .products .product .details .actions .addToBasket {
+    flex-grow: 2;
+    background-color: rgb(46, 221, 46);
+    color: white;
+}
+
+.category .products .product .details .actions .help {
+    flex-grow: 1;
+
+    background-color: rgba(0, 0, 255, 0.05);
+    border: 1px solid blue;
+    color: blue;
 }
