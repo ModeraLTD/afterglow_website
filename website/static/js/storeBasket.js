@@ -1,6 +1,9 @@
 const globalOptions = {
     "maxNotifications": 2,
-    icons: {enabled: false}
+    icons: {enabled: false},
+    durations: {
+        global: 2500,
+    }
 };
 
 let notifier = new AWN(globalOptions);
@@ -23,4 +26,20 @@ function help(id) {
 <p class="popup footerText">Tap outside this window to close.</p>`
             );
     }
+}
+
+function addToBasket(id, prodID) {
+    $.ajax(
+        `/basket/add?id=${id}`,
+        {
+            success: function(d,s,x) {
+                notifier.success("Added to basket!");
+                $(`#${prodID}`).prop("disabled", true);
+            },
+            error: function(j, s, errMsg) {
+                notifier.alert(j['responseText']);
+                console.log(j, s);
+            }
+        }
+    );
 }

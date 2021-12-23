@@ -5,16 +5,17 @@ from .models import Service, Booking
 from .forms import AvailabilityForm
 from website.booking_functions.availability import check_availability
 
-import json
-
 from . import serviceHtml
 
-# Create your views here.
+
+# Regular pages
 
 def index(request):
+    basketIfNotExists(request)
     return render(request, "index.html")
 
 def store(request):
+    basketIfNotExists(request)
     services = Service.objects.all()
 
     products = serviceHtml.groupProds([
@@ -32,18 +33,60 @@ def store(request):
         "help": helpTexts,
     }
 
-    for k, v in context.items():
-        print(k, "\n".join(v), "\n\n\n")
-
     return render(
         request, 
         "store.html",
         context
     )
 
+
+# POST/GET routes
+
+def addToBasket(request):
+    """Adds a service to the user's basket"""
+    params = request.GET.dict()
+
+    if 'id' not in params.keys():
+        return HttpResponse("No id", status=400)
+    if len(request.session['basket']) >= 30:
+        return HttpResponse("Max items in basket", status=400)
+    
+    id_ = params['id']
+    availableIDs = [i.name for i in Service.objects.all()]
+
+    if id_ not in availableIDs:
+        return HttpResponse("Invalid ID", status=400)
+    
+    if id_ in request.session['basket']:
+        return HttpResponse("Already in basket", status=400)
+
+    request.session['basket'].append(id_)
+    request.session.modified = True
+
+    return HttpResponse(status=204)
+
+def isInBasket(request):
+    """Fails if an id is not in basket atleast once"""
+    params = request.GET.dict()
+
+    if 'id' not in params.keys():
+        return HttpResponse("No id", status=400)
+    
+    id_ = params['id']
+    
+    return HttpResponse({
+        "exists": id_ in request.session['basket']
+    })
+
+# Other
+
+def basketIfNotExists(request):
+    if 'basket' not in request.session or True:
+        request.session['basket'] = []
+
+
 class ServiceList(ListView):
     model = Service
-
 
 class BookingList(ListView):
     model = Booking
