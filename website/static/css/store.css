@@ -3,7 +3,6 @@
 }
 
 .category {
-    height: 1000px;
     width: 100%;
     padding: 25px;
     box-sizing: border-box;
@@ -80,7 +79,7 @@
     margin: 0;
     margin-bottom: 5px;
     font-family: "vanilla_whale";
-    font-size: 28px;
+    font-size: 22px;
     letter-spacing: 1px;
 }
 

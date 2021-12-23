@@ -60,6 +60,12 @@ class Service(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     length = models.TimeField("Length of service (minutes)", default=datetime.time(1, 0))  # default 1h0m
     description = models.TextField(default="")
+    imgUrl = models.CharField(
+        "URL to image",
+        max_length=128,
+        help_text="If the static file `css/images/<name>.png` does not exist, use this url",
+        default="https://via.placeholder.com/100"
+    )
     
     def __str__(self):
         return f'[{self.category}] {self.name}: £{self.price}'
