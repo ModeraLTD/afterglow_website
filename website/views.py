@@ -15,16 +15,21 @@ def index(request):
     return render(request, "index.html")
 
 def store(request):
+    services = Service.objects.all()
+
     products = serviceHtml.groupProds([
         serviceHtml.formatProduct(i)
-        for i in Service.objects.all()
+        for i in services
     ])
+
+    helpTexts = dict([(i.name, i.description) for i in services])
 
     context = {
         "SKIN": products["SKIN"],
         "HEALTH": products["HEALTH"],
         "NON_INV": products["NON_INV"],
         "APP": products["APP"],
+        "help": helpTexts,
     }
 
     for k, v in context.items():
