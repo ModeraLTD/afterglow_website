@@ -5,13 +5,36 @@ from .models import Service, Booking
 from .forms import AvailabilityForm
 from website.booking_functions.availability import check_availability
 
+import json
+
+from . import serviceHtml
+
 # Create your views here.
 
 def index(request):
     return render(request, "index.html")
 
 def store(request):
-    return render(request, "store.html")
+    products = serviceHtml.groupProds([
+        serviceHtml.formatProduct(i)
+        for i in Service.objects.all()
+    ])
+
+    context = {
+        "SKIN": products["SKIN"],
+        "HEALTH": products["HEALTH"],
+        "NON_INV": products["NON_INV"],
+        "APP": products["APP"],
+    }
+
+    for k, v in context.items():
+        print(k, "\n".join(v), "\n\n\n")
+
+    return render(
+        request, 
+        "store.html",
+        context
+    )
 
 class ServiceList(ListView):
     model = Service

@@ -2,9 +2,10 @@ from django.urls import path
 from django.urls.resolvers import URLPattern
 
 from . import views
-from .views import ServiceList, BookingView
-from .views import BookingList
+from .views import ServiceList, BookingView, BookingList
+
 app_name = "website"
+
 urlpatterns = [
     path("", views.index, name="index"),
     path("store", views.store, name="store"),
