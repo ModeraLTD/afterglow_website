@@ -59,6 +59,7 @@ class Service(models.Model):
     name = models.CharField(max_length = 40)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     length = models.TimeField("Length of service (minutes)", default=datetime.time(1, 0))  # default 1h0m
+    description = models.TextField(default="")
     
     def __str__(self):
         return f'[{self.category}] {self.name}: £{self.price}'
