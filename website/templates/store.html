@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/store.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
-        <script src="{% static 'js/navbar.js' %}"></script>
-        <script src="{% static 'js/store.js' %}"></script>
-        <script src="" async defer></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'js/store.js' %}?{% now "U" %}"></script>
     </head>
     <body>
         <!-- Main body section -->
@@ -38,9 +38,9 @@
             </div>
 
             <div class="catswiper">
-                <img class="arrow" src="{% static 'css/images/left-arrow.svg' %}" onclick="swipeLeft();">
+                <img class="arrow" src="{% static 'css/images/left-arrow.svg' %}" onclick="swipe(-1);">
                 <h2 id="catname">Category</h2>
-                <img class="arrow" src="{% static 'css/images/right-arrow.svg' %}" onclick="swipeRight();">
+                <img class="arrow" src="{% static 'css/images/right-arrow.svg' %}" onclick="swipe(1);">
             </div>
 
             <!-- Category -->
@@ -49,7 +49,7 @@
                     <div class="product">
                         <img src="https://via.placeholder.com/100">
                         <div class="details">
-                            <h3>Service name</h3>
+                            <h3>Service name 1</h3>
                             <div class="pricetime">
                                 <h4>40</h4>
                                 <h4>45 min</h4>
@@ -69,7 +69,7 @@
                     <div class="product">
                         <img src="https://via.placeholder.com/100">
                         <div class="details">
-                            <h3>Service name</h3>
+                            <h3>Service name 2</h3>
                             <div class="pricetime">
                                 <h4>40</h4>
                                 <h4>45 min</h4>
@@ -89,7 +89,7 @@
                     <div class="product">
                         <img src="https://via.placeholder.com/100">
                         <div class="details">
-                            <h3>Service name</h3>
+                            <h3>Service name 3</h3>
                             <div class="pricetime">
                                 <h4>40</h4>
                                 <h4>45 min</h4>
@@ -109,7 +109,7 @@
                     <div class="product">
                         <img src="https://via.placeholder.com/100">
                         <div class="details">
-                            <h3>Service name</h3>
+                            <h3>Service name 4</h3>
                             <div class="pricetime">
                                 <h4>40</h4>
                                 <h4>45 min</h4>
