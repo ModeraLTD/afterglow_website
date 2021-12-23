@@ -29,7 +29,11 @@ def formatProduct(dbObj):
         length = formatLength(dbObj.length),
     )
 
-    return rv, dbObj.category
+    return {
+        "html": rv,
+        "category": dbObj.category,
+        "name": dbObj.name,
+    }
 
 def groupProds(prods):
     cats = {
@@ -39,8 +43,11 @@ def groupProds(prods):
         "APP": "",
     }
 
-    for prod in prods:
-        cats[prod[1]] += prod[0] + "\n\n"
+    sortedProds = [(i['name'], i['category'], i['html']) for i in prods]
+    sortedProds.sort()
+
+    for prod in sortedProds:
+        cats[prod[1]] += prod[2] + "\n\n"
     
     return cats
 
