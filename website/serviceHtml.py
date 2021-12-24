@@ -1,8 +1,4 @@
 import os
-import random
-import string
-
-CHARSET = list(string.ascii_lowercase)
 
 PRODUCT_TEMPLATE =      """<div class="product">
                             <img src={imgUrl}>
@@ -13,7 +9,7 @@ PRODUCT_TEMPLATE =      """<div class="product">
                                     <h4>{length}</h4>
                                 </div>
                                 <div class="actions">
-                                    <button id={prodID} onclick="toggleBasket('{serviceName}', '{prodID}');" class="{buttonClass}">{buttonText}</button>
+                                    <button id={prodID} onclick="toggleBasket('{prodID}');" class="{buttonClass}">{buttonText}</button>
                                     <button onclick="help('{serviceName}');" class="help">?</button>
                                 </div>
                             </div>
@@ -33,7 +29,7 @@ def formatProduct(dbObj, request):
         serviceName = dbObj.name,
         price = dbObj.price,
         length = formatLength(dbObj.length),
-        prodID = genProdID(),
+        prodID = dbObj.prodID,
         buttonClass = "addToBasket added" if inbasket else "addToBasket",
         buttonText = "Remove from basket" if inbasket else "Add to basket",
     )
@@ -43,9 +39,6 @@ def formatProduct(dbObj, request):
         "category": dbObj.category,
         "name": dbObj.name,
     }
-
-def genProdID():
-    return ''.join([random.choice(CHARSET) for i in range(16)])
 
 def groupProds(prods):
     cats = {

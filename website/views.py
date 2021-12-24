@@ -8,7 +8,7 @@ from website.booking_functions.availability import check_availability
 from . import serviceHtml
 
 # Resets basket when you visit the store
-debugBasket = False
+debugBasket = True
 
 # Regular pages
 
@@ -83,7 +83,7 @@ def toggleBasket(request):
         return HttpResponse("Max items in basket", status=400)
     
     id_ = params['id']
-    availableIDs = [i.name for i in Service.objects.all()]
+    availableIDs = [i.prodID for i in Service.objects.all()]
 
     if id_ not in availableIDs:
         return HttpResponse("Invalid ID", status=400)

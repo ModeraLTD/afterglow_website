@@ -37,9 +37,9 @@ function updateButton(btnID) {
     }
 }
 
-function toggleBasket(id, prodID) {
+function toggleBasket(prodID) {
     $.ajax(
-        `/basket/toggle?id=${id}`,
+        `/basket/toggle?id=${prodID}`,
         {
             success: function(d,s,x) {
                 console.log(d, s, x);
