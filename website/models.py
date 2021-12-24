@@ -5,6 +5,13 @@ from django.conf import settings
 
 import datetime
 import uuid
+import string
+import random
+
+CHARSET = list(string.ascii_uppercase + string.ascii_lowercase + string.digits)
+
+def randomProdID():
+    return "".join([random.choice(CHARSET) for i in range(8)])
 
 class Service(models.Model):
     """Model representing a specific service (cosmetic procedure)"""
@@ -55,6 +62,7 @@ class Service(models.Model):
         ("APP", "Appearance"),
     }
 
+    prodID = models.CharField(editable=False, default=randomProdID, max_length=8)
     category = models.CharField(max_length=7, choices=SERVICE_CATEGORIES, default="SKIN")
     name = models.CharField(max_length = 40)
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -68,7 +76,8 @@ class Service(models.Model):
     )
     
     def __str__(self):
-        return f'[{self.category}] {self.name}: £{self.price}'
+        return f'[{self.category}/{self.prodID}] {self.name}: £{self.price}'
+
 
 class Booking(models.Model):
     """Model representing an appointment/booking"""
@@ -88,3 +97,4 @@ class Booking(models.Model):
 
     def __str__(self): 
         return f'<{self.uuid}> [{self.time_from.strftime("%D %T")} - {self.time_to.strftime("%T")}] {Service.category} by {self.firstName} {self.lastName} at {self.address}'
+
