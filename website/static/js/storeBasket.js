@@ -28,13 +28,24 @@ function help(id) {
     }
 }
 
-function addToBasket(id, prodID) {
+function updateButton(btnID) {
+    var btn = $(`#${btnID}`);
+    if (btn.hasClass("added")) {
+        btn.text("Remove from basket");
+    } else {
+        btn.text("Add to basket");
+    }
+}
+
+function toggleBasket(id, prodID) {
     $.ajax(
-        `/basket/add?id=${id}`,
+        `/basket/toggle?id=${id}`,
         {
             success: function(d,s,x) {
-                notifier.success("Added to basket!");
-                $(`#${prodID}`).prop("disabled", true);
+                console.log(d, s, x);
+                notifier.success(`${x['responseText']}!`);
+                $(`#${prodID}`).toggleClass("added");
+                updateButton(prodID)
             },
             error: function(j, s, errMsg) {
                 notifier.alert(j['responseText']);

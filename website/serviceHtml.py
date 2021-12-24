@@ -13,7 +13,7 @@ PRODUCT_TEMPLATE =      """<div class="product">
                                     <h4>{length}</h4>
                                 </div>
                                 <div class="actions">
-                                    <button id={prodID} onclick="addToBasket('{serviceName}', '{prodID}');" class="addToBasket">Add to basket</button>
+                                    <button id={prodID} onclick="toggleBasket('{serviceName}', '{prodID}');" class="{buttonClass}">{buttonText}</button>
                                     <button onclick="help('{serviceName}');" class="help">?</button>
                                 </div>
                             </div>
@@ -25,13 +25,17 @@ CATEGORY_TEMPLATE =    """<div class="category" id="{cat}">
                             </div>
                         </div>"""
 
-def formatProduct(dbObj):
+def formatProduct(dbObj, request):
+    inbasket = dbObj.name in request.session['basket']
+
     rv = PRODUCT_TEMPLATE.format(
         imgUrl = getImg(dbObj),
         serviceName = dbObj.name,
         price = dbObj.price,
         length = formatLength(dbObj.length),
         prodID = genProdID(),
+        buttonClass = "addToBasket added" if inbasket else "addToBasket",
+        buttonText = "Remove from basket" if inbasket else "Add to basket",
     )
 
     return {

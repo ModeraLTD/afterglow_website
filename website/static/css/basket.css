@@ -1,0 +1,27 @@
+.title {
+    width: 100%;
+}
+
+.title h1 {
+    text-transform: uppercase;
+    font-family: "vanilla_whale";
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.separator {
+    width: 75%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.226);
+    margin: 0 auto;
+}
+
+
+/* BASKET */
+.contents {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}

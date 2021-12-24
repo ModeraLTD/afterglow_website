@@ -7,10 +7,15 @@ from website.booking_functions.availability import check_availability
 
 from . import serviceHtml
 
+# Resets basket when you visit the store
+debugBasket = False
 
 # Regular pages
 
 def index(request):
+    if debugBasket:
+        del request.session['basket']
+
     basketIfNotExists(request)
     return render(request, "index.html")
 
@@ -18,8 +23,10 @@ def store(request):
     basketIfNotExists(request)
     services = Service.objects.all()
 
+    # format twice for button
+    # if prod is in basket
     products = serviceHtml.groupProds([
-        serviceHtml.formatProduct(i)
+        serviceHtml.formatProduct(i, request)
         for i in services
     ])
 
@@ -39,11 +46,35 @@ def store(request):
         context
     )
 
+def basket(request):
+    context = {
+        "test": [
+            {
+                "name": "Product 1",
+                "price": "40",
+            },
+            {
+                "name": "Product 2",
+                "price": "20",
+            },
+            {
+                "name": "Product 3",
+                "price": "15",
+            },
+        ],
+    }
+
+    return render(
+        request,
+        "basket.html",
+        context
+    )
+
 
 # POST/GET routes
 
-def addToBasket(request):
-    """Adds a service to the user's basket"""
+def toggleBasket(request):
+    """Toggles a service to the user's basket"""
     params = request.GET.dict()
 
     if 'id' not in params.keys():
@@ -58,12 +89,15 @@ def addToBasket(request):
         return HttpResponse("Invalid ID", status=400)
     
     if id_ in request.session['basket']:
-        return HttpResponse("Already in basket", status=400)
-
-    request.session['basket'].append(id_)
+        request.session['basket'].remove(id_)
+        resp = "Removed from basket"
+    else:
+        request.session['basket'].append(id_)
+        resp = "Added to basket"
+    
     request.session.modified = True
 
-    return HttpResponse(status=204)
+    return HttpResponse(resp)
 
 def isInBasket(request):
     """Fails if an id is not in basket atleast once"""
@@ -75,13 +109,16 @@ def isInBasket(request):
     id_ = params['id']
     
     return HttpResponse({
-        "exists": id_ in request.session['basket']
+        "exists": inBasket(id_),
     })
 
 # Other
 
+def inBasket(prod):
+    return prod in request.session['basket']
+
 def basketIfNotExists(request):
-    if 'basket' not in request.session or True:
+    if 'basket' not in request.session:
         request.session['basket'] = []
 
 

@@ -121,12 +121,11 @@
     flex-grow: 2;
     background-color: rgb(36, 185, 36);
     color: white;
-    transition: background-colour 0.5s ease;
+    transition: background-color 0.5s ease;
 }
 
-.category .products .product .details .actions .addToBasket:disabled {
-    background-color: rgb(104, 177, 104);
-    content: "Added to basket";
+.category .products .product .details .actions .addToBasket.added {
+    background-color: rgb(185, 58, 36);
 }
 
 .category .products .product .details .actions .help {

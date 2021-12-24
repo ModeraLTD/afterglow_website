@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AfterGlow Store</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/basket.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'notifs/style.css' %}?{% now "U" %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'js/basket.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'notifs/index.var.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'js/storeBasket.js' %}?{% now "U" %}"></script>
+    </head>
+    <body>
+        <!-- Main body section -->
+        <div class="body">
+            <!-- Navigation bar -->
+            <div class="navbar">
+                <div class="navitem" onclick="openMenu();">
+                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+                </div>
+                <div class="navitem">
+                    <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+                </div>
+                <div class="navitem">
+                    <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>                </div>
+            </div>
+
+            <div class="title">
+                <h1>Basket</h1>
+                <div class="separator"></div>
+            </div>
+            
+            <div class="contents">
+                <div class="services">
+                    {% for i in test %}
+                    
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="main">
+                    <h3>AfterGlow</h3>
+                    <div class="links">
+                        <a href="/">Home</a>
+                        <a href="/404">Bookings</a>
+                        <a href="/contact">Contact us</a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu popup -->
+        <div class="menupopup" id="menupopup">
+            <button onclick="closeMenu();">X</button>
+            <div class="items">
+                <a href="/">HOME</a>
+                <a href="/store">AESTHETICS</a>
+                <a href="/basket">BASKET</a>
+            </div>
+        </div>
+    </body>
+</html>
