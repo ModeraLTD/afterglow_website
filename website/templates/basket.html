@@ -40,6 +40,11 @@
             </div>
             
             <div class="contents">
+                {% if basket %}
+                    <h2 class="serviceEmptyText hidden">No items in basket. Head to the store to add some!</h2>
+                {% else %}
+                    <h2 class="serviceEmptyText">No items in basket. Head to the store to add some!</h2>
+                {% endif %}
                 <div class="services">
                     {% for i in basket %}
                         <div class="service" id={{ i.prodID }}>
@@ -52,7 +57,13 @@
                     {% endfor %}
                 </div>
 
+                <div class="separator"></div>
+
                 <h3 class="totalPrice" id="totalPrice">Total price: £{{ totalPrice }}</h3>
+                <div class="actions">
+                    <button id="book" onclick="window.open('book', '_self');">Book now</button>
+                    <button id="clear" onclick="clearServices();">Clear services</button>
+                </div>
             </div>
 
             <!-- Footer -->

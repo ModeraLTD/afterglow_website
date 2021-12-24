@@ -63,6 +63,11 @@ def basket(request):
 
 # POST/GET routes
 
+def clearAllServices(request):
+    """Clear all services in basket"""
+    request.session['basket'] = []
+    return HttpResponse(status=200)
+
 def getTotalPrice(request):
     """Return the total basket price"""
     totalPrice = 0

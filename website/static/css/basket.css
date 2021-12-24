@@ -27,6 +27,20 @@
     font-family: "vanilla_whale";
 }
 
+.contents .serviceEmptyText {
+    width: 100%;
+    font-size: 16px;
+    color: gray;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: 0;
+}
+
+.contents .serviceEmptyText.hidden {
+    display: none;
+}
+
 .contents .services {
     width: 100%;
 }
@@ -80,5 +94,37 @@
     margin-bottom: auto;
 }
 
-.contents .totalPrice {
+.contents .actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.contents .actions button {
+    padding: 5px 15px;
+    box-sizing: border-box;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: "vanilla_whale";
+    letter-spacing: 1px;
+    outline: none;
+    border: none;
+}
+
+#book {
+    flex-grow: 2;
+    background-color:rgb(27, 116, 199);
+    transition: 0.5s ease;
+}
+
+#book:disabled {
+    background-color:rgb(98, 141, 180);
+}
+
+#clear {
+    background-color: transparent;
+    border: 1px solid rgb(27, 116, 199);
+    color: rgb(27, 116, 199);
 }
