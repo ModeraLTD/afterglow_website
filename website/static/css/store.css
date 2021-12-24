@@ -53,6 +53,7 @@
 
 .category .products {
     width: 100%;
+    min-height: 500px;
 }
 
 .category .products .product {

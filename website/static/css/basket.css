@@ -22,6 +22,7 @@
 /* BASKET */
 .contents {
     width: 100%;
+    min-height: 500px;
     padding: 20px;
     box-sizing: border-box;
     font-family: "vanilla_whale";
