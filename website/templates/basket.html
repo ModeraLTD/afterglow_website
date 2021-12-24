@@ -41,10 +41,18 @@
             
             <div class="contents">
                 <div class="services">
-                    {% for i in test %}
-                    
+                    {% for i in basket %}
+                        <div class="service" id={{ i.prodID }}>
+                            <div class="details">
+                                <h4 class="name">{{ i.name }}</h4>
+                                <h4 class="price">{{ i.price }}</h4>
+                            </div>
+                            <button class="remove" onclick="remove('{{ i.prodID }}');"></button>
+                        </div>
                     {% endfor %}
                 </div>
+
+                <h3 class="totalPrice">Total price: £{{ totalPrice }}</h3>
             </div>
 
             <!-- Footer -->

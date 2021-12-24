@@ -22,7 +22,7 @@ CATEGORY_TEMPLATE =    """<div class="category" id="{cat}">
                         </div>"""
 
 def formatProduct(dbObj, request):
-    inbasket = dbObj.name in request.session['basket']
+    inbasket = dbObj.prodID in request.session['basket']
 
     rv = PRODUCT_TEMPLATE.format(
         imgUrl = getImg(dbObj),

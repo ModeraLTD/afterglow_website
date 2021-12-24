@@ -7,7 +7,7 @@ from website.booking_functions.availability import check_availability
 
 from . import serviceHtml
 
-# Resets basket when you visit the store
+# Resets basket when you visit the main page
 debugBasket = True
 
 # Regular pages
@@ -47,21 +47,11 @@ def store(request):
     )
 
 def basket(request):
+    items, totalPrice = getBasketFormatted(request)
+
     context = {
-        "test": [
-            {
-                "name": "Product 1",
-                "price": "40",
-            },
-            {
-                "name": "Product 2",
-                "price": "20",
-            },
-            {
-                "name": "Product 3",
-                "price": "15",
-            },
-        ],
+        "basket": items,
+        "totalPrice": totalPrice,
     }
 
     return render(
@@ -97,6 +87,8 @@ def toggleBasket(request):
     
     request.session.modified = True
 
+    print(request.session['basket'])
+
     return HttpResponse(resp)
 
 def isInBasket(request):
@@ -113,6 +105,32 @@ def isInBasket(request):
     })
 
 # Other
+
+def getBasketFormatted(request):
+    """Get a nicely formatted basket JSON object
+       and also the total price."""
+    
+    totalPrice = 0
+    items = []
+
+    for item in request.session['basket']:
+        try:
+            prod = Service.objects.filter(prodID__exact=item)[0]
+            print(f"prod for {item}", prod)
+
+            items.append({
+                "prodID": prod.prodID,
+                "name": prod.name,
+                "price": prod.price
+            })
+
+            totalPrice += prod.price
+        except Exception as e:
+            print(str(e))
+    
+    print("items", items)
+
+    return items, totalPrice
 
 def inBasket(prod):
     return prod in request.session['basket']
