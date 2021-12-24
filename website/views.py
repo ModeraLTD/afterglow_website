@@ -8,7 +8,7 @@ from website.booking_functions.availability import check_availability
 from . import serviceHtml
 
 # Resets basket when you visit the main page
-debugBasket = True
+debugBasket = False
 
 # Regular pages
 
