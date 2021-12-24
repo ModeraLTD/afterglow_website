@@ -63,6 +63,21 @@ def basket(request):
 
 # POST/GET routes
 
+def getTotalPrice(request):
+    """Return the total basket price"""
+    totalPrice = 0
+
+    for item in request.session['basket']:
+        try:
+            prod = Service.objects.filter(prodID__exact=item)[0]
+            totalPrice += prod.price
+        except Exception as e:
+            print(str(e))
+    
+    print("totalPrice", totalPrice)
+    
+    return HttpResponse(totalPrice)
+
 def toggleBasket(request):
     """Toggles a service to the user's basket"""
     params = request.GET.dict()
@@ -116,7 +131,6 @@ def getBasketFormatted(request):
     for item in request.session['basket']:
         try:
             prod = Service.objects.filter(prodID__exact=item)[0]
-            print(f"prod for {item}", prod)
 
             items.append({
                 "prodID": prod.prodID,
@@ -127,8 +141,6 @@ def getBasketFormatted(request):
             totalPrice += prod.price
         except Exception as e:
             print(str(e))
-    
-    print("items", items)
 
     return items, totalPrice
 

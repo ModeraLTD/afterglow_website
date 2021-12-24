@@ -71,6 +71,7 @@
 .contents .services .service .remove {
     width: 16px;
     height: 16px;
+    padding: 8px;
     background-image: url('images/red-x.svg');
     background-size: cover;
     border: none;
