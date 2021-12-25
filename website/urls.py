@@ -15,5 +15,5 @@ urlpatterns = [
     path("basket/clearAll", views.clearAllServices, name="clearAll"),
     path('service_list', ServiceList.as_view(), name = "serviceList"),
     path('booking_list', BookingList.as_view(), name = "BookingList"),
-    path('book/', BookingView.as_view(), name = 'booking_view')
+    path('book/', BookingView.as_view(), name = 'booking_view'),
 ]
