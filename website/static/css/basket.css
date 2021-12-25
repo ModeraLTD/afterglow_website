@@ -1,0 +1,131 @@
+.title {
+    width: 100%;
+}
+
+.title h1 {
+    text-transform: uppercase;
+    font-family: "vanilla_whale";
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.separator {
+    width: 75%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.226);
+    margin: 0 auto;
+}
+
+
+/* BASKET */
+.contents {
+    width: 100%;
+    min-height: 500px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "vanilla_whale";
+}
+
+.contents .serviceEmptyText {
+    width: 100%;
+    font-size: 16px;
+    color: gray;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: 0;
+}
+
+.contents .serviceEmptyText.hidden {
+    display: none;
+}
+
+.contents .services {
+    width: 100%;
+}
+
+.contents .services .service {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.contents .services .service:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+.contents .services .service .details {
+    flex-grow: 2;
+}
+
+.contents .services .service .details h4 {
+    margin: 0;
+    float: left;
+}
+
+.contents .services .service .details .name {
+    margin-right: 10px;
+}
+
+.contents .services .service .details .price {
+    font-size: 12px;
+    color: rgba(128, 128, 128, 0.61);
+    margin-top: 3px;
+    font-weight: 0;
+}
+
+.contents .services .service .details .price::before {
+    content: '£';
+}
+
+.contents .services .service .remove {
+    width: 16px;
+    height: 16px;
+    padding: 8px;
+    background-image: url('images/red-x.svg');
+    background-size: cover;
+    border: none;
+    background-color: transparent;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.contents .actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.contents .actions button {
+    padding: 5px 15px;
+    box-sizing: border-box;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: "vanilla_whale";
+    letter-spacing: 1px;
+    outline: none;
+    border: none;
+}
+
+#book {
+    flex-grow: 2;
+    background-color:rgb(27, 116, 199);
+    transition: 0.5s ease;
+}
+
+#book:disabled {
+    background-color:rgb(98, 141, 180);
+}
+
+#clear {
+    background-color: transparent;
+    border: 1px solid rgb(27, 116, 199);
+    color: rgb(27, 116, 199);
+}

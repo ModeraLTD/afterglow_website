@@ -7,10 +7,15 @@ from website.booking_functions.availability import check_availability
 
 from . import serviceHtml
 
+# Resets basket when you visit the main page
+debugBasket = False
 
 # Regular pages
 
 def index(request):
+    if debugBasket:
+        del request.session['basket']
+
     basketIfNotExists(request)
     return render(request, "index.html")
 
@@ -18,8 +23,10 @@ def store(request):
     basketIfNotExists(request)
     services = Service.objects.all()
 
+    # format twice for button
+    # if prod is in basket
     products = serviceHtml.groupProds([
-        serviceHtml.formatProduct(i)
+        serviceHtml.formatProduct(i, request)
         for i in services
     ])
 
@@ -39,11 +46,45 @@ def store(request):
         context
     )
 
+def basket(request):
+    items, totalPrice = getBasketFormatted(request)
+
+    context = {
+        "basket": items,
+        "totalPrice": totalPrice,
+    }
+
+    return render(
+        request,
+        "basket.html",
+        context
+    )
+
 
 # POST/GET routes
 
-def addToBasket(request):
-    """Adds a service to the user's basket"""
+def clearAllServices(request):
+    """Clear all services in basket"""
+    request.session['basket'] = []
+    return HttpResponse(status=200)
+
+def getTotalPrice(request):
+    """Return the total basket price"""
+    totalPrice = 0
+
+    for item in request.session['basket']:
+        try:
+            prod = Service.objects.filter(prodID__exact=item)[0]
+            totalPrice += prod.price
+        except Exception as e:
+            print(str(e))
+    
+    print("totalPrice", totalPrice)
+    
+    return HttpResponse(totalPrice)
+
+def toggleBasket(request):
+    """Toggles a service to the user's basket"""
     params = request.GET.dict()
 
     if 'id' not in params.keys():
@@ -52,18 +93,23 @@ def addToBasket(request):
         return HttpResponse("Max items in basket", status=400)
     
     id_ = params['id']
-    availableIDs = [i.name for i in Service.objects.all()]
+    availableIDs = [i.prodID for i in Service.objects.all()]
 
     if id_ not in availableIDs:
         return HttpResponse("Invalid ID", status=400)
     
     if id_ in request.session['basket']:
-        return HttpResponse("Already in basket", status=400)
-
-    request.session['basket'].append(id_)
+        request.session['basket'].remove(id_)
+        resp = "Removed from basket"
+    else:
+        request.session['basket'].append(id_)
+        resp = "Added to basket"
+    
     request.session.modified = True
 
-    return HttpResponse(status=204)
+    print(request.session['basket'])
+
+    return HttpResponse(resp)
 
 def isInBasket(request):
     """Fails if an id is not in basket atleast once"""
@@ -75,13 +121,39 @@ def isInBasket(request):
     id_ = params['id']
     
     return HttpResponse({
-        "exists": id_ in request.session['basket']
+        "exists": inBasket(id_),
     })
 
 # Other
 
+def getBasketFormatted(request):
+    """Get a nicely formatted basket JSON object
+       and also the total price."""
+    
+    totalPrice = 0
+    items = []
+
+    for item in request.session['basket']:
+        try:
+            prod = Service.objects.filter(prodID__exact=item)[0]
+
+            items.append({
+                "prodID": prod.prodID,
+                "name": prod.name,
+                "price": prod.price
+            })
+
+            totalPrice += prod.price
+        except Exception as e:
+            print(str(e))
+
+    return items, totalPrice
+
+def inBasket(prod):
+    return prod in request.session['basket']
+
 def basketIfNotExists(request):
-    if 'basket' not in request.session or True:
+    if 'basket' not in request.session:
         request.session['basket'] = []
 
 

@@ -10,17 +10,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'css/store.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/basket.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'notifs/style.css' %}?{% now "U" %}">
-        <script type="text/javascript">
-            {% autoescape off %}
-                const helpTexts = {{ help }};
-            {% endautoescape %}
-        </script>
         <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
         <script src="{% static 'js/navbar.js' %}?{% now "U" %}"></script>
-        <script src="{% static 'js/store.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'js/basket.js' %}?{% now "U" %}"></script>
         <script src="{% static 'notifs/index.var.js' %}?{% now "U" %}"></script>
         <script src="{% static 'js/storeBasket.js' %}?{% now "U" %}"></script>
     </head>
@@ -36,50 +31,38 @@
                     <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
                 </div>
                 <div class="navitem">
-                    <a href="/basket"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/></a>
-                </div>
+                    <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>                </div>
             </div>
 
             <div class="title">
-                <h1>Store</h1>
+                <h1>Basket</h1>
                 <div class="separator"></div>
             </div>
-
-            <div class="catswiper">
-                <img class="arrow" src="{% static 'css/images/left-arrow.svg' %}" onclick="swipe(-1);">
-                <h2 id="catname">Category</h2>
-                <img class="arrow" src="{% static 'css/images/right-arrow.svg' %}?2" onclick="swipe(1);">
-            </div>
-
-            <div class="category" id="SKIN">
-                <div class="products">
-                    {% autoescape off %}
-                        {{ SKIN }}
-                    {% endautoescape %}
+            
+            <div class="contents">
+                {% if basket %}
+                    <h2 class="serviceEmptyText hidden">No items in basket. Head to the store to add some!</h2>
+                {% else %}
+                    <h2 class="serviceEmptyText">No items in basket. Head to the store to add some!</h2>
+                {% endif %}
+                <div class="services">
+                    {% for i in basket %}
+                        <div class="service" id={{ i.prodID }}>
+                            <div class="details">
+                                <h4 class="name">{{ i.name }}</h4>
+                                <h4 class="price">{{ i.price }}</h4>
+                            </div>
+                            <button class="remove" onclick="remove('{{ i.prodID }}');"></button>
+                        </div>
+                    {% endfor %}
                 </div>
-            </div>
 
-            <div class="category" id="HEALTH">
-                <div class="products">
-                    {% autoescape off %}
-                        {{ HEALTH }}
-                    {% endautoescape %}
-                </div>
-            </div>
+                <div class="separator"></div>
 
-            <div class="category" id="NON_INV">
-                <div class="products">
-                    {% autoescape off %}
-                        {{ NON_INV }}
-                    {% endautoescape %}
-                </div>
-            </div>
-
-            <div class="category" id="APP">
-                <div class="products">
-                    {% autoescape off %}
-                        {{ APP }}
-                    {% endautoescape %}
+                <h3 class="totalPrice" id="totalPrice">Total price: £{{ totalPrice }}</h3>
+                <div class="actions">
+                    <button id="book" onclick="window.open('book', '_self');">Book now</button>
+                    <button id="clear" onclick="clearServices();">Clear services</button>
                 </div>
             </div>
 
