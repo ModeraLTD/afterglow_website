@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render, HttpResponse
-from django.views.generic import ListView, FormView
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.views.generic import ListView, FormView, View
 from .models import Service, Booking
 from .forms import AvailabilityForm
 from website.booking_functions.availability import check_availability
@@ -46,12 +46,15 @@ def store(request):
         context
     )
 
+
 def basket(request):
-    items, totalPrice = getBasketFormatted(request)
+    items, totalPrice, totaltime = getBasketFormatted(request)
+    formattime = serviceHtml.formatTime(totaltime)
 
     context = {
         "basket": items,
         "totalPrice": totalPrice,
+        "totaltime": formattime
     }
 
     return render(
@@ -82,6 +85,16 @@ def getTotalPrice(request):
     print("totalPrice", totalPrice)
     
     return HttpResponse(totalPrice)
+def getTotalTime(request): 
+    """Return total time for the basket"""
+    totaltime = 0
+    for item in request.session['basket']: 
+        try: 
+            prod = Service.objects.filter(prodID__exact = item)[0]
+            totaltime += prod.time 
+        except Exception as e:
+            print(str(e))
+
 
 def toggleBasket(request):
     """Toggles a service to the user's basket"""
@@ -132,6 +145,7 @@ def getBasketFormatted(request):
     
     totalPrice = 0
     items = []
+    totaltime = 0
 
     for item in request.session['basket']:
         try:
@@ -140,14 +154,16 @@ def getBasketFormatted(request):
             items.append({
                 "prodID": prod.prodID,
                 "name": prod.name,
-                "price": prod.price
+                "price": prod.price,
+                "time": prod.time
             })
 
             totalPrice += prod.price
+            totaltime += prod.time
         except Exception as e:
             print(str(e))
 
-    return items, totalPrice
+    return items, totalPrice, totaltime
 
 def inBasket(prod):
     return prod in request.session['basket']
@@ -162,6 +178,7 @@ class ServiceList(ListView):
 
 class BookingList(ListView):
     model = Booking
+    
 
 class BookingView(FormView):
     form_class =AvailabilityForm
@@ -172,7 +189,7 @@ class BookingView(FormView):
         service_list = Service.objects.filter(category=data['service_category'])
         available_service = []
         for serv in service_list:
-            if check_availability(Service, data['bookin'], data['bookout']):
+            if check_availability(Service, data['time_from'], data['time_to']):
                 available_service.append(serv)
         if len(available_service) > 0:
             serv = available_service[0]
@@ -180,8 +197,8 @@ class BookingView(FormView):
             booking = Booking.objects.create(
                 user = self.request.user,
                 Service = serv,
-                bookin = data['bookin'],
-                bookout = data['bookout']
+                Time_From = data['time_from'],
+                Time_To = data['time_to']
             )
             booking.save()
             return HttpResponse(booking)

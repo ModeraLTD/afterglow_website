@@ -1,15 +1,79 @@
 <!DOCTYPE HTML> 
-
+{% load static %}
 <html lang = 'en' > 
     <head> 
-        <title>Book a Room</title> 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Book</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/availability.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'notifs/style.css' %}?{% now "U" %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'notifs/index.var.js' %}?{% now "U" %}"></script>
     </head>
     <body> 
-        <form action = "" method = "POST"> 
-            {{form.as_p}}
-            {% csrf_token%}
-            <button type="submit" > Book Service </button>
+        <div class="navbar">
+            <div class="navitem" onclick="openMenu();">
+                <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+            </div>
+            <div class="navitem">
+                <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+            </div>
+            <div class="navitem">
+                <a href="/basket"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/></a>
+            </div>
+        </div>
+        <div class = "container-form" > 
+            <form acion = "booking" method = "GET">
+                {% csrf_token %} 
+                <h2 class = "title" > Booking Information </h2>
+                <div class = "forms-field">
+                    <label for = "id_Date" > Date </label>
+                    <input type = "date" id = "id_Date" name = "Date"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_Time_From" > Time </label>
+                    <input type = "time" id = "id_Time_From" name = "Time_From"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_first_Name" > First Name </label>
+                    <input type = "text" id = "id_first_Name" name = "first_Name">  
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_last_Name" > Surname </label>
+                    <input type = "text" id = "id_last_Name" name = "last_Name"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_email" > Email </label>
+                    <input type = "text" id = "id_email" name = "email">  
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_phone" > Phone Number </label>
+                    <input type = "text" id = "id_phone name" = "phone"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_POSTCODE" > Post Code </label>
+                    <input type = "text" id = "id_POSTCODE" name = "POSTCODE"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_address" > Address </label>
+                    <input type = "text" id = "id_address" name = "address"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_city" > City </label>
+                    <input type = "text" id = "id_city" name = "city"> 
+                </div>
+                <div class = "forms-field">
+                    <label for = "id_county" > County </label>
+                    <input type = "text" id = "id_county" name = "county"> 
+                </div>
 
-        </form>
-    </body>
+            <button class ="btn" > Continue </button>
+
+    </body> 
 </html>
