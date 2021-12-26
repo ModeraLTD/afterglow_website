@@ -2,7 +2,7 @@ from django import forms
 
 class AvailabilityForm(forms.Form):
     Date = forms.DateField(required= True, input_formats=["%Y-%m-%d"])
-    Time_From = forms.DateTimeField(required= True, input_formats=["%H:%M"])
+    Time_From = forms.TimeField(required= True, input_formats=["%H:%M"])
     first_Name = forms.CharField(required = True,max_length=16)
     last_Name = forms.CharField(required = True, max_length = 15)
     email = forms.CharField(required = True, max_length = 20)

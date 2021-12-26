@@ -178,31 +178,24 @@ class ServiceList(ListView):
 
 class BookingList(ListView):
     model = Booking
+
     
 
 class BookingView(FormView):
-    form_class =AvailabilityForm
-    template_name = 'availability_form.html'
+    template_name = 'test_form.html'
+    def get(self, request): 
+        form = AvailabilityForm()
+        stored = Booking.objects.all()
+        return render(request, self.template_name, {'form': form, 'stored': stored})
+    def post(self, request):
+        form = AvailabilityForm(request.POST)
+        if form.is_valid():
+            time = form.cleaned_data['Time_From']
+        args = {'form': form , 'time' : time}
+        return render(request, self.template_name, args)
     
-    def form_valid(self, form):
-        data = form.cleaned_data
-        service_list = Service.objects.filter(category=data['service_category'])
-        available_service = []
-        for serv in service_list:
-            if check_availability(Service, data['time_from'], data['time_to']):
-                available_service.append(serv)
-        if len(available_service) > 0:
-            serv = available_service[0]
-            
-            booking = Booking.objects.create(
-                user = self.request.user,
-                Service = serv,
-                Time_From = data['time_from'],
-                Time_To = data['time_to']
-            )
-            booking.save()
-            return HttpResponse(booking)
-        else:
-            return HttpResponse("This is not available")
+    
+    
+ 
             
                 

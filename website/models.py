@@ -91,10 +91,13 @@ class Booking(models.Model):
     service = models.ForeignKey(Service, on_delete = models.CASCADE)
     date = models.DateField("Starting date/time of booking")
     time_to = models.TimeField("Ending date/time of booking")
+    email = models.CharField("Email") #Modify it later
     firstName = models.CharField("First name of booker", max_length=16, default=None)
     lastName = models.CharField("Last name of booker", max_length=32, default=None)
-    address = models.CharField("Address of booker", max_length=256, default=None)
-    phone = models.CharField("Phone Number", max_length = 11, default = None)
+    POSTCODE = models.CharField("Post Code", max_length = 8)
+    address = models.CharField("Address", max_length = 20)
+    city = models.CharField("City", max_length = 10)
+    county = models.CharField("County", max_length = 20)
     def __str__(self): 
         return f'<{self.uuid}> [{self.time_from.strftime("%D %T")} - {self.time_to.strftime("%T")}] {Service.category} by {self.firstName} {self.lastName} at {self.address}'
 
