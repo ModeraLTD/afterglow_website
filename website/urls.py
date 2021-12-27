@@ -2,7 +2,7 @@ from django.urls import path
 from django.urls.resolvers import URLPattern
 
 from . import views
-from .views import ServiceList, BookingView, BookingList
+from .views import ServiceList, BookingView, BookingList, CustomerFormView
 
 app_name = "website"
 
@@ -15,5 +15,8 @@ urlpatterns = [
     path("basket/clearAll", views.clearAllServices, name="clearAll"),
     path('service_list', ServiceList.as_view(), name = "serviceList"),
     path('booking_list', BookingList.as_view(), name = "BookingList"),
-    path('book/', BookingView.as_view(), name = 'booking_view'),
+    path('customer', CustomerFormView.as_view(), name = "customer_form"),
+    path('customer/book', BookingView.as_view(), name = 'booking_view'),
+    path('customer/book/success', views.success, name = "success")
+    
 ]

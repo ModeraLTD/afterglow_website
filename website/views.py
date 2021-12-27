@@ -1,11 +1,15 @@
 from django.http import HttpResponse
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from django.views.generic import ListView, FormView, View
-from .models import Service, Booking
-from .forms import AvailabilityForm
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
+from django.views.generic import ListView, FormView, View, TemplateView
+from .models import Service, Booking, Customer
+from .forms import BookingForm, CustomerForm
 from website.booking_functions.availability import check_availability
-
+import stripe
+from django.conf import settings
 from . import serviceHtml
+from django.db import models
+import random
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Resets basket when you visit the main page
 debugBasket = False
@@ -177,23 +181,40 @@ class ServiceList(ListView):
     model = Service
 
 class BookingList(ListView):
-    model = Booking
+    model = Booking   
+        
 
-    
+class CustomerFormView(FormView):
+    template_name = 'test_form2.html'
+    def get(self, request): 
+        form = CustomerForm()
+        return render(request, self.template_name, {'form': form})
+    def post(self, request):
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            new_customer = form.save()
+            name = form.cleaned_data['fullname']
+            return HttpResponseRedirect('customer/book')
+        args = {'form': form , 'fullname' : name}
+        return render(request, self.template_name, args)
+def success(request): 
+    return render(request, 'success.html')  
 
 class BookingView(FormView):
     template_name = 'test_form.html'
     def get(self, request): 
-        form = AvailabilityForm()
-        stored = Booking.objects.all()
-        return render(request, self.template_name, {'form': form, 'stored': stored})
+        form = BookingForm()
+        return render(request, self.template_name, {'form': form})
     def post(self, request):
-        form = AvailabilityForm(request.POST)
+        service = self.request.session['basket']
+        form = BookingForm(request.POST)
         if form.is_valid():
+            form.save()
             time = form.cleaned_data['Time_From']
+            return HttpResponseRedirect('book/success')
         args = {'form': form , 'time' : time}
         return render(request, self.template_name, args)
-    
+  
     
     
  

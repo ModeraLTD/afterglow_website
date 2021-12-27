@@ -1,5 +1,6 @@
 from django.db import models
-from django.conf import settings
+from django.forms import ModelForm
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 
@@ -12,6 +13,7 @@ CHARSET = list(string.ascii_uppercase + string.ascii_lowercase + string.digits)
 
 def randomProdID():
     return "".join([random.choice(CHARSET) for i in range(8)])
+
 
 class Service(models.Model):
     """Model representing a specific service (cosmetic procedure)"""
@@ -77,7 +79,17 @@ class Service(models.Model):
     
     def __str__(self):
         return f'[{self.category}/{self.prodID}] {self.name}: £{self.price}, {self.time}'
-
+class Customer(models.Model):
+        # booking ID shown to the customer *and* client
+        # used for human referenced, as a secondary key
+        fullname = models.CharField("Full Name: ", max_length = 20, default = None)
+        email = models.CharField("Email", max_length = 30, default = None)
+        phone = models.CharField("Phone", max_length = 11, default = None)
+        POSTCODE = models.CharField("Post Code", max_length = 8, default = None)
+        address = models.CharField("Address", max_length = 20)
+        
+        def __str__(self): 
+            return f'{self.fullname}'
 
 class Booking(models.Model):
     """Model representing an appointment/booking"""
@@ -86,18 +98,15 @@ class Booking(models.Model):
     
     # booking ID shown to the customer *and* client
     # used for human referenced, as a secondary key
-    booking_id = models.CharField("Booking ID for user", max_length=8, default=None)
-    
-    service = models.ForeignKey(Service, on_delete = models.CASCADE)
-    date = models.DateField("Starting date/time of booking")
-    time_to = models.TimeField("Ending date/time of booking")
-    email = models.CharField("Email") #Modify it later
-    firstName = models.CharField("First name of booker", max_length=16, default=None)
-    lastName = models.CharField("Last name of booker", max_length=32, default=None)
-    POSTCODE = models.CharField("Post Code", max_length = 8)
-    address = models.CharField("Address", max_length = 20)
-    city = models.CharField("City", max_length = 10)
-    county = models.CharField("County", max_length = 20)
+    #choices = models.ManyToManyField(Service, related_name='choice')
+    customer = models.ForeignKey(Customer, null = True, on_delete= models.SET_NULL)
+    service = models.ForeignKey(Service, related_name = 'service', null = True,  on_delete = models.SET_NULL)
+    date = models.DateField("Booking Date: ", default = None)
+    Time_From = models.TimeField("Booking Time", default = None)            
+ 
     def __str__(self): 
-        return f'<{self.uuid}> [{self.time_from.strftime("%D %T")} - {self.time_to.strftime("%T")}] {Service.category} by {self.firstName} {self.lastName} at {self.address}'
+        return f'<{self.uuid}> [{self.date} - {self.Time_From}] {self.service} by {self.customer}'
+            
+        
 
+    
