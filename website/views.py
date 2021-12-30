@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
 from django.views.generic import ListView, FormView, View, TemplateView
-from .models import Service, Booking, Customer
+from .models import Service, Booking, Customer, Order
 from .forms import BookingForm, CustomerForm
 from website.booking_functions.availability import check_availability
 import stripe
@@ -100,6 +100,17 @@ def getTotalTime(request):
             print(str(e))
 
 
+def getTotalSlot_Time(request): 
+    """Return total slot_time for the basket"""
+    totalSlotTime = 0
+    for item in request.session['basket']: 
+        try: 
+            prod = Service.objects.filter(prodID__exact = item)[0]
+            totalSlotTime += prod.slot_time 
+        except Exception as e:
+            print(str(e))
+
+
 def toggleBasket(request):
     """Toggles a service to the user's basket"""
     params = request.GET.dict()
@@ -192,11 +203,13 @@ class CustomerFormView(FormView):
     def post(self, request):
         form = CustomerForm(request.POST)
         if form.is_valid():
-            new_customer = form.save()
-            name = form.cleaned_data['fullname']
+            c = form.save()
+            new_customer = c.clean()
+            request.session['customer'] = new_customer
             return HttpResponseRedirect('customer/book')
-        args = {'form': form , 'fullname' : name}
+        args = {'form': form}
         return render(request, self.template_name, args)
+
 def success(request): 
     return render(request, 'success.html')  
 
@@ -206,16 +219,23 @@ class BookingView(FormView):
         form = BookingForm()
         return render(request, self.template_name, {'form': form})
     def post(self, request):
-        service = self.request.session['basket']
+        import uuid
         form = BookingForm(request.POST)
         if form.is_valid():
-            form.save()
-            time = form.cleaned_data['Time_From']
+            b = form.save()
+            new_booking = b.clean()
+            request.session['new_booking'] = new_booking
             return HttpResponseRedirect('book/success')
-        args = {'form': form , 'time' : time}
+        args = {'form': form}
         return render(request, self.template_name, args)
   
+def payment(self, request): 
     
+    
+    self.Order.customer = request.session['customer']
+    self.Order.booking = request.session['new_booking']
+    
+        
     
  
             
