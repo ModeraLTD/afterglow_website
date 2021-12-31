@@ -86,8 +86,6 @@ class Customer(models.Model):
         fullname = models.CharField("Full Name", max_length = 20, default = None)
         email = models.EmailField(max_length = 254, default = None)
         phone = models.CharField("Phone", max_length = 11, default = None)
-        POSTCODE = models.CharField("Post Code", max_length = 8, default = None)
-        address = models.CharField("Address", max_length = 20)
         
         def __str__(self): 
             return f'{self.fullname}'
@@ -105,6 +103,8 @@ class Available_Day(models.Model):
             raise ValidationError("date must be in future", code = 'invalid')
         super(Available_Day, self).save(*args, **kwargs)
     
+    class Meta: 
+        db_table = "Dates"
     
     def __str__(self):
         return f'{self.days}'
@@ -155,6 +155,4 @@ class Order(models.Model):
     
     def __str__(self):
         return f'Date Ordered: {self.date_ordered} Customer: {self.customer} Booking Date/Time: {self.booking} Service: {self.service} Transaction: {self.complete}'
-           
-
     

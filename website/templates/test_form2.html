@@ -1,12 +1,49 @@
+<!DOCTYPE HTML> 
+{%load static %}
 <html lang = 'en' > 
     <head> 
-        <title>Hello!</title> 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Book</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/availability.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'notifs/style.css' %}?{% now "U" %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'notifs/index.var.js' %}?{% now "U" %}"></script>
     </head>
     <body> 
-        <form method = "POST" >
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type = "submit" > Submit </button>
-        </form>  
+        <div class="navbar">
+            <div class="navitem" onclick="openMenu();">
+                <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+            </div>
+            <div class="navitem">
+                <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+            </div>
+            <div class="navitem">
+                <a href="/basket"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/></a>
+            </div>
+        </div>
+        <div class = "container" >
+            <div class = "title"> Personal Information </div>
+            <form action = "customer" method = "POST" > 
+                {% csrf_token %}
+                <div class "customer-field" > 
+                    <label for  = "id_fullname"> Full Name: </label> 
+                    <input type = "text" name = "fullname" maxlength = "30" required id= "id_fullname">
+                </div>
+                <div class "customer-field" > 
+                    <label for  = "id_email"> Email: </label> 
+                    <input type = "email" name = "email" maxlength = "254" required id= "id_email">
+                </div>
+                <div class "customer-field" > 
+                    <label for="id_phone">Phone:</label> 
+                    <input type="text" name="phone" maxlength="11" required="" id="id_phone">
+                </div>
+        </div>
     </body>
 </html>

@@ -4,6 +4,7 @@ from .models import Booking, Customer, Available_Day, Service
 from datetime import date
 from . import views
 from django.core.exceptions import ValidationError
+
 class BookingForm(ModelForm):
     class Meta: 
         model = Booking
@@ -25,13 +26,6 @@ class BookingForm(ModelForm):
                     if check_next_slot not in time_list:
                         raise ValidationError("Your sessions overruns other bookings! you cannot choose this time", code = 'invalid')
                 #If not then it will remove the time slots from the list
-                if views.getTotalSlot_Time.totalSlotTime2 != 0:
-                    numberdec = (views.getTotalSlot_Time.totalSlotTime2 / 0.5) - 1
-                else: 
-                    numberdec = 0
-                remove_slot = Booking.Time_From + views.getTotalSlot_Time.totalSlotTime + numberdec
-                for v in range(Booking.Time_From, remove_slot + 1):
-                    time_list.remove(v)
             else:
                 raise ValidationError("This booking time is not available!" , code = "invalid")
 class CustomerForm(ModelForm):
@@ -39,16 +33,5 @@ class CustomerForm(ModelForm):
         model = Customer
         
         fields = '__all__'
-#class AvailabilityForm(forms.Form):
-    #Date = forms.DateField(required= True, input_formats=["%Y-%m-%d"])
-    #Time_From = forms.TimeField(required= True, input_formats=["%H:%M"])
-
-
-#class CustomerForm(forms.Form):
-    #fullname = forms.CharField(required = True,max_length=30)
-    #email = forms.CharField(required = True, max_length = 20)
-    #phone = forms.CharField(required = True, max_length = 11)
-    #POSTCODE = forms.CharField(required = True, max_length = 8)
-    #address = forms.CharField(required = True, max_length = 20)
     
     

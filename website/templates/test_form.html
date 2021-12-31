@@ -1,15 +1,93 @@
 <!DOCTYPE HTML> 
-
+{%load static %}
 <html lang = 'en' > 
     <head> 
-        <title>Hello!</title> 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Book</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/availability.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'notifs/style.css' %}?{% now "U" %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/navbar.js' %}?{% now "U" %}"></script>
+        <script src="{% static 'notifs/index.var.js' %}?{% now "U" %}"></script>
     </head>
     <body> 
-        <form method = "POST" >
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type = "submit" > Submit </button>
-        </form>
-        {{time}}    
-    </body>
+        <div class="navbar">
+            <div class="navitem" onclick="openMenu();">
+                <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+            </div>
+            <div class="navitem">
+                <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+            </div>
+            <div class="navitem">
+                <a href="/basket"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-cart-interface-kiranshastry-lineal-kiranshastry-1.png"/></a>
+            </div>
+        </div>
+        <div class = "booking-form" >
+            <h2 class = "title" > Booking information </h2> 
+            <form action = "booking" method = "POST"> 
+                {%csrf_token%}
+                <div class = "booking-field"> 
+                    <label for="id_date">DATE</label>
+                    <select name="date" id="id_date">
+                        {%for date in Available %}
+                            <option value = "{{date.id}}"> {{date.days}} </option>
+                        {% endfor %}
+                    </select> 
+                </div>
+                <div class = "booking-field" > 
+                    <label for = "id_Time_From" > TIME </label> 
+                    <select name="Time_From" required id="id_Time_From">
+                        <option value="" selected="">---------</option>
+
+                        <option value="0">09:00</option>
+                      
+                        <option value="1">09:30</option>
+                      
+                        <option value="2">10:00</option>
+                      
+                        <option value="3">10:30</option>
+                      
+                        <option value="4">11:00</option>
+                      
+                        <option value="5">11:30</option>
+                      
+                        <option value="6">12:00</option>
+                      
+                        <option value="7">12:30</option>
+                      
+                        <option value="8">13:00</option>
+                      
+                        <option value="9">13:30</option>
+                      
+                        <option value="10">14:00</option>
+                      
+                        <option value="11">14:30</option>
+                      
+                        <option value="12">15:00</option>
+                      
+                        <option value="13">15:30</option>
+                      
+                        <option value="14">16:00</option>
+                      
+                        <option value="15">16:30</option>
+                      
+                        <option value="16">17:00</option>
+                      
+                        <option value="17">17:30</option>
+                      
+                        <option value="18">16:00</option>
+                      
+                      </select>
+
+                </div>
+                <button type = "submit" > Next </button>
+            </form>    
+        </div>
+     </body>
 </html>

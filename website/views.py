@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
 from django.views.generic import ListView, FormView, View, TemplateView
-from .models import Service, Booking, Customer, Order
+from .models import Available_Day, Service, Booking, Customer, Order
 from .forms import BookingForm, CustomerForm
 from website.booking_functions.availability import check_availability
 import stripe
@@ -103,10 +103,14 @@ def getTotalTime(request):
 def getTotalSlot_Time(request): 
     """Return total slot_time for the basket"""
     totalSlotTime = 0
+    totalSlotTime2 = 0
     for item in request.session['basket']: 
         try: 
             prod = Service.objects.filter(prodID__exact = item)[0]
-            totalSlotTime += prod.slot_time 
+            if prod.slot_time == 0.5:
+                totalSlotTime2 += prod.slot_time
+            else:
+                totalSlotTime += prod.slot_time 
         except Exception as e:
             print(str(e))
 
@@ -192,12 +196,15 @@ class ServiceList(ListView):
     model = Service
 
 class BookingList(ListView):
-    model = Booking   
-        
+    model = Booking  
+ 
+    
 
 class CustomerFormView(FormView):
     template_name = 'test_form2.html'
-    def get(self, request): 
+    def get(self, request):
+        #if len(request.session['basket']) == 0:
+            #return HttpResponseRedirect('') 
         form = CustomerForm()
         return render(request, self.template_name, {'form': form})
     def post(self, request):
@@ -216,8 +223,10 @@ def success(request):
 class BookingView(FormView):
     template_name = 'test_form.html'
     def get(self, request): 
+        #if len(request.session['basket']) == 0:
+            #return HttpResponseRedirect('')
         form = BookingForm()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, "Available": Available_Day.objects.all(), })
     def post(self, request):
         import uuid
         form = BookingForm(request.POST)
@@ -237,6 +246,16 @@ def payment(self, request):
     
         
     
- 
-            
-                
+def removeSlot(self, complete):
+    if Order.complete == True:
+        time_list = Available_Day.time_list
+        if getTotalSlot_Time.totalSlotTime2 != 0:
+            numberdec = (getTotalSlot_Time.totalSlotTime2 / 0.5) - 1
+        else: 
+            numberdec = 0
+            remove_slot = Booking.Time_From + getTotalSlot_Time.totalSlotTime + numberdec
+            for v in range(Booking.Time_From, remove_slot + 1):
+                time_list.remove(v)
+    else:
+        ()
+               
