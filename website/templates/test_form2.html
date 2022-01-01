@@ -29,21 +29,22 @@
             </div>
         </div>
         <div class = "container" >
-            <div class = "title"> Personal Information </div>
+            <div class = "title">Your details:</div>
             <form action = "customer" method = "POST" > 
                 {% csrf_token %}
-                <div class "customer-field" > 
+                <div class="customer-field" > 
                     <label for  = "id_fullname"> Full Name: </label> 
                     <input type = "text" name = "fullname" maxlength = "30" required id= "id_fullname">
                 </div>
-                <div class "customer-field" > 
+                <div class="customer-field" > 
                     <label for  = "id_email"> Email: </label> 
                     <input type = "email" name = "email" maxlength = "254" required id= "id_email">
                 </div>
-                <div class "customer-field" > 
+                <div class="customer-field" > 
                     <label for="id_phone">Phone:</label> 
                     <input type="text" name="phone" maxlength="11" required="" id="id_phone">
                 </div>
+                <button type="submit">Proceed to booking</button>
         </div>
     </body>
 </html>

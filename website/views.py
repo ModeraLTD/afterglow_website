@@ -4,12 +4,10 @@ from django.views.generic import ListView, FormView, View, TemplateView
 from .models import Available_Day, Service, Booking, Customer, Order
 from .forms import BookingForm, CustomerForm
 from website.booking_functions.availability import check_availability
-import stripe
 from django.conf import settings
 from . import serviceHtml
 from django.db import models
 import random
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Resets basket when you visit the main page
 debugBasket = False

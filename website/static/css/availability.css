@@ -1,15 +1,42 @@
-body { 
-    font-family: Bebas;
-    background: linear-gradient(120deg, #cfc424, #8e44ad);
-    height: 100vh;
-    overflow: hidden;
+body {
+    font-family: "vanilla_whale";
 }
 
-.container{
+.container {
+    padding: 30px;
+    box-sizing: border-box;
+}
 
-    margin: auto;
-    width: 50%;
-    background: white;
+.title {
+    font-size: 28px;
+    text-align: center;
+    margin: 15px;
+}
+
+div .customer-field,  .booking-field {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 40% 50%;
+}
+
+div .customer-field label, .customer-booking label {
+    text-align: right;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+div .customer-field input, .customer-booking select {
+    float: left;
+}
+
+button[type="submit"] {
+    margin: 15px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
     padding: 10px;
-
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(27, 204, 27);
+    color: white;
 }
