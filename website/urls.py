@@ -17,6 +17,6 @@ urlpatterns = [
     path('booking_list', BookingList.as_view(), name = "BookingList"),
     path('customer', CustomerFormView.as_view(), name = "customer_form"),
     path('customer/book', BookingView.as_view(), name = 'booking_view'),
-    path('customer/book/success', views.success, name = "success")
+    path('payment/', views.payment, name = "payment"),
     
 ]

@@ -217,7 +217,6 @@ class CustomerFormView(FormView):
 
 def success(request): 
     return render(request, 'success.html')  
-
 class BookingView(FormView):
     template_name = 'test_form.html'
     def get(self, request): 
@@ -235,14 +234,12 @@ class BookingView(FormView):
             return HttpResponseRedirect('book/success')
         args = {'form': form}
         return render(request, self.template_name, args)
-  
-def payment(self, request): 
+
+def payment(request): 
+    items, totalPrice, totaltime = getBasketFormatted(request)
+    return render(request, 'payment.html', {'totalPrice': totalPrice}) 
+
     
-    
-    self.Order.customer = request.session['customer']
-    self.Order.booking = request.session['new_booking']
-    
-        
     
 def removeSlot(self, complete):
     if Order.complete == True:
