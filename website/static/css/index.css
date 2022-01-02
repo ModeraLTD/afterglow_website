@@ -32,6 +32,28 @@
     text-align: center;
 }
 
+/* effects */
+.shine {
+    background: linear-gradient(90deg, rgb(253, 236, 139) 0, rgb(255, 249, 213) 10%, rgb(253, 236, 139) 20%);
+    background-position: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s infinite ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-text-size-adjust: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@keyframes shine {
+    0%
+        {background-position: -30px;}
+    60%
+        {background-position: 330px;}
+    100%
+        {background-position: 330px;}
+}
+
 .main .contents .text h1, .main .contents .text h2 {
     margin: 0;
 }
@@ -39,7 +61,6 @@
 .main .contents .text h1 {
     font-size: 80px;
     letter-spacing: 5px;
-    color: rgb(211, 193, 136);
     font-family: 'Bebas';
 }
 
