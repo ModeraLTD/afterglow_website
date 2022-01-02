@@ -80,6 +80,7 @@ class Service(models.Model):
     
     def __str__(self):
         return f'[{self.category}/{self.prodID}] {self.name}: £{self.price}, {self.time}'
+
 class Customer(models.Model):
         # booking ID shown to the customer *and* client
         # used for human referenced, as a secondary key

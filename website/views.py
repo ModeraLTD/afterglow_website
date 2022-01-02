@@ -11,6 +11,7 @@ import random
 
 # Resets basket when you visit the main page
 debugBasket = False
+maxAvailableDays = 8
 
 # Regular pages
 
@@ -19,7 +20,19 @@ def index(request):
         del request.session['basket']
 
     basketIfNotExists(request)
-    return render(request, "index.html")
+    
+    # render available days (up to maxAvailableDays = 8)
+    days = Available_Day.objects.order_by("days")[:maxAvailableDays]
+
+    context = {
+        "days": [formatDay(i.days) for i in days],
+    }
+    
+    return render(
+        request,
+        "index.html",
+        context,
+    )
 
 def store(request):
     basketIfNotExists(request)
@@ -155,6 +168,27 @@ def isInBasket(request):
     })
 
 # Other
+
+def formatDay(day):
+    """Format a day available into a nicely readable string
+
+    Args:
+        day (datetime.date): Day
+    """
+    def makeDayStr(d):
+        lastDigit = int(str(d)[-1])
+        if lastDigit == 1:
+            ending = "st"
+        elif lastDigit == 2:
+            ending = "nd"
+        elif lastDigit == 3:
+            ending = "rd"
+        else:
+            ending = "th"
+        
+        return f"{d}{ending}"
+
+    return day.strftime("%A {} %B %Y").format(makeDayStr(day.day))
 
 def getBasketFormatted(request):
     """Get a nicely formatted basket JSON object
