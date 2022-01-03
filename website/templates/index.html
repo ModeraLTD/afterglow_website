@@ -35,7 +35,7 @@
                 <div class="bgimg"></div>
                 <div class="contents">
                     <div class="text">
-                        <h1>DISCOVER</h1>
+                        <h1 class="shine">DISCOVER</h1>
                         <h2>POPULAR AESTHETICS</h2>
                     </div>
                     <div class="buttons">
@@ -53,7 +53,7 @@
             <!-- About & Social media -->
             <div class="section about">
                 <h1>AfterGlow</h1>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis nisi eu eros accumsan efficitur vitae ultrices nunc. Fusce quis mi diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rhoncus, felis ut commodo tempus, risus lectus maximus metus, id porttitor erat elit non sem.</h3>
+                <h3>With 7 years of relevant experience, AfterGlow provides a wide range of advanced beauty, cosmetic and aesthetic treatments; all carried out to the highest professional standard.</h3>
                 <br/>
                 <h4>Follow us!</h4>
                 <div class="media_container">
@@ -68,6 +68,50 @@
     
                     <!-- Youtube -->
                     <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png"/></a>
+                </div>
+            </div>
+
+            <!-- Popular services -->
+            <div class="section popularServices">
+                <h1>Our popular<br>services</h1>
+                <div class="services">
+                    <div class="service">
+                        <h3 class="name">Anti-wrinkle injections</h3>
+                        <h4 class="desc">Prevent formation of static wrinkles</h4>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                    <div class="service">
+                        <h3 class="name">Lip fillers (1/2ml)</h3>
+                        <h4 class="desc">Easily add volume to lips</h4>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                    <div class="service">
+                        <h3 class="name">Nasolabial fold fillers</h3>
+                        <h4 class="desc">Reduce wrinkle appearances and fine lines</h4>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                    <div class="service">
+                        <h3 class="name">Dermaplaning (+ deluxe)</h3>
+                        <h4 class="desc">Exfoliates skin</h4>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                    <div class="service">
+                        <h3 class="name">Microneedling</h3>
+                        <h4 class="desc">For smoother, finer and more toned skin</h4>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available days -->
+            <div class="section available">
+                <h1>Upcoming available days</h1>
+                <div class="days">
+                    {% for i in days %}
+                        <div class="day">
+                            <h3>{{ i }}</h3>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
     

@@ -32,6 +32,28 @@
     text-align: center;
 }
 
+/* effects */
+.shine {
+    background: linear-gradient(90deg, rgb(253, 236, 139) 0, rgb(255, 249, 213) 10%, rgb(253, 236, 139) 20%);
+    background-position: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s infinite ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-text-size-adjust: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@keyframes shine {
+    0%
+        {background-position: -30px;}
+    60%
+        {background-position: 330px;}
+    100%
+        {background-position: 330px;}
+}
+
 .main .contents .text h1, .main .contents .text h2 {
     margin: 0;
 }
@@ -39,7 +61,6 @@
 .main .contents .text h1 {
     font-size: 80px;
     letter-spacing: 5px;
-    color: rgb(211, 193, 136);
     font-family: 'Bebas';
 }
 
@@ -93,7 +114,7 @@
     width: 150%;
     max-width: 102%;
     height: 50px;
-    background-color: black;
+    background-color: white;
     margin-top: -20px;
     margin-left: -5px;
     transform: rotate(5deg);
@@ -109,10 +130,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.about h1 {
+h1 {
     font-size: 40px;
     font-family: 'BigNoodleTitling';
     letter-spacing: 5px; 
+    text-align: center;
 }
 
 .about h3 {
@@ -123,4 +145,92 @@
     display: flex;
     width: 100%;
     justify-content: space-evenly;
+}
+
+
+/*    POPULAR SERVICES SECTION    */
+.popularServices h1 {
+    text-align: center;
+}
+
+.popularServices .services {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.popularServices .services .service {
+    min-width: 175px;
+    max-width: 225px;
+    min-height: 100px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popularServices .services .service .name {
+    margin: 0 0;
+    font-size: 24px;
+}
+
+.popularServices .services .service .desc {
+    margin: 5px 0;
+    margin-bottom: 10px;;
+    font-size: 14px;
+    color: gray;
+    font-weight: 0;
+}
+
+.popularServices .services .service button {
+    width: 100%;
+    border: none;
+    background-color: cornflowerblue;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+/*    AVAILABLE DAYS SECTION    */
+.available {
+    width: 100%;
+    min-height: 200px;
+    margin: 20px 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.available h1 {
+    font-size: 32px;
+}
+
+.available .days {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.available .days .day {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgba(0, 0, 0, 0.075);
+    padding: 5px;
+    width: 100%;
+}
+
+.available .days .day h3 {
+    margin: 0;
+}
+
+.available .days .day:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.025);
 }
