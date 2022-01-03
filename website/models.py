@@ -10,6 +10,27 @@ import uuid
 import string
 import random
 
+TIMESLOT_LIST = (
+        (0, '09:00'),
+        (1, '09:30'),
+        (2, '10:00'),
+        (3, '10:30'),
+        (4, '11:00'),
+        (5, '11:30'),
+        (6, '12:00'),
+        (7, '12:30'),
+        (8, '13:00'),
+        (9, '13:30'),
+        (10,'14:00'),
+        (11, '14:30'),
+        (12, '15:00'),
+        (13, '15:30'),
+        (14, '16:00'),
+        (15, '16:30'),
+        (16, '17:00'),
+        (17, '17:30'),
+        (18, '16:00')
+    )
 CHARSET = list(string.ascii_uppercase + string.ascii_lowercase + string.digits)
 
 def randomProdID():
@@ -109,38 +130,15 @@ class Available_Day(models.Model):
     def __str__(self):
         return f'{self.days}'
 class Booking(models.Model):
-    TIMESLOT_LIST = (
-        (0, '09:00'),
-        (1, '09:30'),
-        (2, '10:00'),
-        (3, '10:30'),
-        (4, '11:00'),
-        (5, '11:30'),
-        (6, '12:00'),
-        (7, '12:30'),
-        (8, '13:00'),
-        (9, '13:30'),
-        (10,'14:00'),
-        (11, '14:30'),
-        (12, '15:00'),
-        (13, '15:30'),
-        (14, '16:00'),
-        (15, '16:30'),
-        (16, '17:00'),
-        (17, '17:30'),
-        (18, '16:00')
-    )
+
     """Model representing an appointment/booking"""
     uuid = models.UUIDField(primary_key = True, default=uuid.uuid4, editable=False)
     date = models.ForeignKey(Available_Day, related_name = "availability", null = True, on_delete = models.SET_NULL, default = False)
     Time_From = models.IntegerField(choices = TIMESLOT_LIST)
     # randomly generated unique ID  - shouldn't be touched, modified nor used by the client/customer
-    class Meta: 
-        unique_together = ('date', 'Time_From')
-    # randomly generated booking ID
     
     def __str__(self): 
-        return f'{self.date} - {self.time}'
+        return f'{self.date} - {self.Time_From}'
     
             
         

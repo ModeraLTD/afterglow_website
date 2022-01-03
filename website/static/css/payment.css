@@ -1,0 +1,17 @@
+body { 
+    background: white; 
+}
+.title { 
+    max-width: 250px;
+    height: 60px; 
+    margin: auto;
+
+}
+.container{ 
+    max-width: 250px;
+    height: 60px; 
+    margin: auto;
+
+    
+
+}

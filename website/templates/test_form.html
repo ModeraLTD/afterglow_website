@@ -84,6 +84,9 @@
                         <option value="18">16:00</option>
                       
                       </select>
+                      {% for errors in form.Time_From.errors %}
+                      <small class = "text-danger"> {{error}} </small>
+                      {%endfor%}
 
                 </div>
                 <button type = "submit" > Next </button>
