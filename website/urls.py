@@ -5,11 +5,11 @@ from . import views
 from .views import ServiceList, BookingFormView, BookingList, CustomerFormView, BookingFormView3 
 
 app_name = "website"
-
 urlpatterns = [
     path("", views.index, name="index"),
     path("store", views.store, name="store"),
     path("basket", views.basket, name="basket"),
+    path('complete/', views.complete_order, name = "complete_order"),
     path("basket/toggle", views.toggleBasket, name="toggleBasket"),
     path("basket/getTotalPrice", views.getTotalPrice, name="getTotalPrice"),
     path("basket/clearAll", views.clearAllServices, name="clearAll"),
@@ -18,5 +18,4 @@ urlpatterns = [
     path('customer', CustomerFormView.as_view(), name = "customer_form"),
     path('customer/booking', BookingFormView3.as_view(), name = 'booking_view'),
     path('customer/book/payment', views.payment, name = "payment"),
-    path('complete/', views.completeOrder, name = "complete")
 ]

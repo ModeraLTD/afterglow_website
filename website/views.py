@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
 from django.views.generic import ListView, FormView, View, TemplateView
-from .models import Available_Day, Service, Booking, Customer, Order
+from .models import Available_Day, Service, Booking, Customer, Order, orderItem
 from .forms import BookingForm, CustomerForm
 from website.booking_functions.availability import check_availability
 from django.conf import settings
@@ -14,6 +14,7 @@ from django.db import models
 import random
 from .models import TIMESLOT_LIST
 import json
+from .ID import OrderID
 # Resets basket when you visit the main page
 debugBasket = False
 maxAvailableDays = 8
@@ -285,24 +286,49 @@ class BookingFormView3(FormView):
         return render(request, self.template_name, args)    
 
 def payment(request): 
-    import uuid
     items, totalPrice, totaltime = getBasketFormatted(request)
     time = request.session['time']
     time = TIMESLOT_LIST[time][1]
     name = request.session['name']
     email = request.session['email']
-    transaction_id = uuid.uuid1()
+    transaction_id = str(OrderID())
+    first = request.session['name'][0]
+    second = request.session['name'][1]
+    transaction_id = first + second + transaction_id
+    print(transaction_id)
     context = { 'totalPrice': totalPrice, 
                 'totalTime': totaltime,
                 'name': name,
                 'email': email,
-                'transaction_id': transaction_id}
+                'transaction_id': transaction_id,}
                 
     return render(request, 'payment.html', context)
-    
-def completeOrder(request):
+from .paypal import PayPalClient
+
+def complete_order(request):
+    items, totalPrice, totaltime = getBasketFormatted(request)
+    PPClient = PayPalClient()
     body = json.loads(request.body)
-    print('BODY:', body)
+    data = body['transaction_id']
+    requestorder = OrdersGetRequest(data)
+    response = PPClient.client.execute(requestorder)
+    total_paid = response.result.purchase_units[0].amount.value
+    if total_paid == totalPrice:
+        complete = True
+    else:
+        complete = False
+    booking = request.session['new_booking']
+    customer = request.session['customer']
+    baset = request.session['basket']
+    order = Order.objects.create(
+        customer = customer, booking = booking, complete = complete, totalpaid = total_paid 
+    )
+    order_id = order.pk
+    for item in basket: 
+        prod = Service.objects.filter(prodID__exact=item)[0]
+        orderItem.objects.create(order = order_id, service = prod, transaction_id = data)
+        
+        
     return JsonResponse('payment Completed', safe = False)
     
             

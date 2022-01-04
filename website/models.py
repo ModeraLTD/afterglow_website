@@ -148,10 +148,17 @@ class Order(models.Model):
     uuid = models.UUIDField(primary_key = True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(Customer, related_name = "customer", null = True, on_delete = models.SET_NULL)
     booking = models.ForeignKey(Booking, related_name = 'booking', null = True, on_delete = models.SET_NULL)
-    service = models.ForeignKey(Service, related_name = 'Service', null = True, on_delete = models.SET_NULL)
+    totalpaid = models.DecimalField(max_digits = 6, decimal_places = 2, default = 0)
     complete = models.BooleanField(default = False, null = True, blank = False)
     date_ordered = models.DateTimeField(auto_now_add = True)
     
     def __str__(self):
-        return f'Date Ordered: {self.date_ordered} Customer: {self.customer} Booking Date/Time: {self.booking} Service: {self.service} Transaction: {self.complete}'
+        return f'{self.date_ordered}'
+class orderItem(models.Model):
+    order = models.ForeignKey(Order, related_name ='items', on_delete = models.CASCADE)
+    service = models.ForeignKey(Service, related_name = 'service', on_delete = models.CASCADE)
+    transaction_id = models.CharField("Order ID", max_length = 10, default = None)
+    
+    def __str__(self):
+        return f'{self.transaction_id}'
     
