@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{% static 'css/index.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
         <script src="{% static 'js/navbar.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
         <script src="" async defer></script>
     </head>
     <body>
@@ -39,8 +40,10 @@
                         <h2>POPULAR AESTHETICS</h2>
                     </div>
                     <div class="buttons">
-                        <button class="filled">Book now</button>
-                        <button class="transparent">Our services</button>
+                        <button onclick="window.open('/store', '_self');" class="filled">Book now</button>
+                        <button onclick="$('html, body').animate({
+                            scrollTop: $('.popularServices').offset().top
+                        }, 2000);" class="transparent">Our services</button>
                     </div>
                     <div class="text">
                         <h4>Based in Luton, England</h4>
@@ -121,7 +124,7 @@
                     <h3>AfterGlow</h3>
                     <div class="links">
                         <a href="/">Home</a>
-                        <a href="/404">Bookings</a>
+                        <a href="/customer">Bookings</a>
                         <a href="/contact">Contact us</a>
                     </div>
                 </div>
