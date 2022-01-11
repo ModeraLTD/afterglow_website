@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
         <script src="{% static 'js/navbar.js' %}"></script>
         <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/index.js' %}?{% now "U" %}"></script>
         <script src="" async defer></script>
     </head>
     <body>
@@ -35,12 +36,12 @@
             <!-- Main section -->
             <div class="section main">
                 <div class="bgimg"></div>
-                <div class="contents">
-                    <div class="text">
+                <div id="contents" class="contents">
+                    <div class="text" style="display: none;">
                         <h1 class="shine">DISCOVER</h1>
                         <h2>POPULAR AESTHETICS</h2>
                     </div>
-                    <div class="buttons">
+                    <div class="buttons" style="display: none;">
                         <button onclick="window.open('/store', '_self');" class="filled">Book now</button>
                         <button onclick="$('html, body').animate({
                             scrollTop: $('.popularServices').offset().top
