@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--navy);
+    background-color: #f1e4ef;
 }
 
 .navbar {

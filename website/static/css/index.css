@@ -68,7 +68,7 @@
     font-weight:normal;
     letter-spacing: 2px;
     font-family: 'Bebas';
-    color:rgb(218, 209, 180);
+    color:var(--gold);
     font-size: 30px;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .main .contents .buttons button.filled {
-    background-color: #6392bb;
+    background-color: var(--affair);
 }
 
 .main .contents .buttons button.transparent {
@@ -114,7 +114,7 @@
     width: 150%;
     max-width: 102%;
     height: 50px;
-    background-color: white;
+    background-color: #f1e4ef;
     margin-top: -20px;
     margin-left: -5px;
     transform: rotate(5deg);
@@ -158,7 +158,7 @@ h1 {
     justify-content: center;
     flex-wrap: wrap;
     padding: 20px 0;
-    gap: 10px;
+    gap: 15px;
     width: 100%;
     height: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -169,11 +169,12 @@ h1 {
     min-width: 175px;
     max-width: 225px;
     min-height: 100px;
-    background-color: rgb(240, 240, 240);
+    background-color: #dfcbdc;
     border-radius: 10px;
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
 }
 
 .popularServices .services .service .name {
@@ -192,8 +193,8 @@ h1 {
 .popularServices .services .service button {
     width: 100%;
     border: none;
-    background-color: cornflowerblue;
-    color: rgb(0, 0, 0);
+    background-color: var(--affair);
+    color: white;
     border-radius: 10px;
     padding: 5px;
 }
@@ -222,8 +223,8 @@ h1 {
 
 .available .days .day {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgba(0, 0, 0, 0.075);
-    padding: 5px;
+    background-color: var(--white);
+    padding: 5px 10px;
     width: 100%;
 }
 
@@ -233,4 +234,14 @@ h1 {
 
 .available .days .day:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.025);
+}
+
+.available .days .day:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.available .days .day:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
