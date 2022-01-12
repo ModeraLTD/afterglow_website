@@ -7,6 +7,7 @@
         <title>Book</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/palette.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
         <link rel="stylesheet" href="{% static 'css/availability.css' %}?{% now "U" %}">
@@ -76,5 +77,15 @@
             <button class ="btn" > Continue </button>
         
         </form> 
+
+        <!-- Menu popup -->
+        <div class="menupopup" id="menupopup">
+            <button onclick="closeMenu();">X</button>
+            <div class="items">
+                <a href="/">HOME</a>
+                <a href="/store">AESTHETICS</a>
+                <a href="/basket">BASKET</a>
+            </div>
+        </div>
     </body> 
 </html>

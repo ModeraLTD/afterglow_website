@@ -2,13 +2,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f1e4ef;
 }
 
 .navbar {
     display:inline-block;
     width: 100%;
     height: 50px;
-    background-color: black;
+    background-color: var(--darknavy);
     display: flex;
     justify-content: space-between;
     color: white;
@@ -29,6 +30,7 @@ body {
     filter: invert(100%);
     width: 30px;
     height: 30px;
+    filter: invert(97%) sepia(38%) saturate(1625%) hue-rotate(213deg) brightness(95%) contrast(88%);
 }
 
 .navbar .navitem:nth-child(2) img {
@@ -58,8 +60,8 @@ body {
     filter: invert(100%);
     width: 30px;
     height: 30px;
+    filter: invert(97%) sepia(38%) saturate(1625%) hue-rotate(213deg) brightness(95%) contrast(88%);
 }
-
 
 /*    MENU POPUP    */
 .menupopup {
