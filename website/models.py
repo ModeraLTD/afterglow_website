@@ -29,14 +29,14 @@ TIMESLOT_LIST = (
         (15, '16:30'),
         (16, '17:00'),
         (17, '17:30'),
-        (18, '16:00')
+        (18, '18:00')
     )
 CHARSET = list(string.ascii_uppercase + string.ascii_lowercase + string.digits)
 
 def randomProdID():
     return "".join([random.choice(CHARSET) for i in range(8)])
 
-
+#Service Model where products are created
 class Service(models.Model):
     """Model representing a specific service (cosmetic procedure)"""
     """
@@ -74,7 +74,7 @@ class Service(models.Model):
         jalupro for dark circles		200
         jalupro full face				300
         jalupro full face and neck		375
-        injectable mesotherpay			175
+        injectable mesotheray			175
         aqualyx thing					50
 	    double chin 					300
 """
@@ -102,6 +102,10 @@ class Service(models.Model):
     def __str__(self):
         return f'[{self.category}/{self.prodID}] {self.name}: £{self.price}, {self.time}'
 
+
+
+
+#Customer model for Modelform
 class Customer(models.Model):
         # booking ID shown to the customer *and* client
         # used for human referenced, as a secondary key
@@ -115,10 +119,7 @@ class Customer(models.Model):
 #Allow the admin to create days when available
 class Available_Day(models.Model):
     days = models.DateField("Create Available Dates")
-    
-    def time_list(self):
-        #List of slots availabble, instantiated each date
-        time_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+    time_list = [i for i in range(0, 19)]
     
     def save(self, *args, **kwargs ):
         if self.days < datetime.date.today():
@@ -129,7 +130,10 @@ class Available_Day(models.Model):
         db_table = "Dates"
     
     def __str__(self):
-        return f'{self.days}'
+        return f'{self.days}' 
+
+
+#Booking model for the booking form
 class Booking(models.Model):
 
     """Model representing an appointment/booking"""
@@ -141,19 +145,21 @@ class Booking(models.Model):
     def __str__(self): 
         return f'{self.date} - {self.Time_From}'
     
-            
-        
+           
+#Order Model for processing and transacting orders.       
 class Order(models.Model): 
     """ Order of the item """
     uuid = models.UUIDField(primary_key = True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(Customer, related_name = "customer", null = True, on_delete = models.SET_NULL)
     booking = models.ForeignKey(Booking, related_name = 'booking', null = True, on_delete = models.SET_NULL)
     totalpaid = models.DecimalField(max_digits = 6, decimal_places = 2, default = 0)
-    complete = models.BooleanField(default = False, null = True, blank = False)
+    billing_status = models.BooleanField(default = False, null = True, blank = False)
     date_ordered = models.DateTimeField(auto_now_add = True)
     
     def __str__(self):
         return f'{self.date_ordered}'
+
+#Account for the Item Ordered
 class orderItem(models.Model):
     order = models.ForeignKey(Order, related_name ='items', on_delete = models.CASCADE)
     service = models.ForeignKey(Service, related_name = 'service', on_delete = models.CASCADE)

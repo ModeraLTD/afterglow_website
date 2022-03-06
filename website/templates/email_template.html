@@ -1,0 +1,28 @@
+
+
+Dear {{name}}
+
+Thanks for your booking at afterglow. 
+Your booking has been successful and below are the details of your bookings. 
+
+Please keep this email especially the orderID.
+
+Order ID: {{ID}} 
+
+Location: 1 Oak Road, Luton , LU4 8AA
+
+Date: {{date}}
+Time: {{time}} 
+Estimated Service Time: {{totaltime}} Minutes
+Amount: £{{totalPrice}}
+Services: 
+{% for i in items %}
+    {{i.name}}
+{% endfor %}
+
+
+Again, keep this email and the OrderID please.
+
+Thank You,
+SkinandClear
+

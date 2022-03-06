@@ -1,39 +1,72 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
-  </head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Payment Successful</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/palette.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/success.css' %}?{% now "U"%}"> 
+        <script src="{% static 'js/navbar.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/index.js' %}?{% now "U" %}"></script>
+        <script src="" async defer></script>
+    </head>
 
   <body>
+            <!-- Main body section -->
+            <div class="body">
+              <div class="navbar">
+                  <div class="navitem filtered" onclick="openMenu();">
+                      <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+                  </div>
+                  <div class="navitem filtered">
+                      <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+                  </div>
+                  <div class="navitem">
+                      <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>
+                  </div>
+              </div>
+              
     <div class = "title" > 
-        <h2> Booking Confirmation </h1>
+        <h2> BOOKING PAYMENT </h2>
         </div> 
         <div class = "container">
             <div class = "name"> 
-                <h5 id = "id_name" > 
+                <h4 id = "id_name" > 
                     Name: {{name}}
 
-                 </h5> 
+                 </h4> 
              </div> 
              <div class = "email"> 
-                <h5 id = "id_email" > 
+                <h4 id = "id_email" > 
                     Email: {{email}}
 
-                 </h5> 
+                 </h4> 
              </div> 
              <div class = "amount"> 
-                <h5 id = "id_amount" > 
-                    Amount: {{totalPrice}}
+                <h4 id = "id_amount" > 
+                    Amount: £{{totalPrice}}
                     
-                 </h5> 
+                 </h4> 
              </div> 
              <div class = "totaltime"> 
-                <h5 id = "id_totaltime" > 
-                    Service time estimated: {{totalTime}}
+                <h4 id = "id_totaltime" > 
+                    Service Time Estimated: {{totalTime}} Minutes
                     
-                 </h5> 
+                 </h4> 
              </div> 
+             <div class = 'date' >
+                 <h4 id = 'id_date' >
+                     Date: {{date}}
+                 </h4>
+                </div>
             
        <div id="paypal-button-container"></div>
     </div>
@@ -89,7 +122,7 @@
                       'transaction_id' : transaction_id
                   })
               }).then(function (){
-                  location.href = '';
+                  location.href = '{% url 'website:payment_successful' %}';
 
               })
             },
@@ -100,7 +133,14 @@
         initPayPalButton();
         </script> 
 
-
+        <div class="menupopup" id="menupopup">
+          <button onclick="closeMenu();">X</button>
+          <div class="items">
+              <a href="/">HOME</a>
+              <a href="/store">AESTHETICS</a>
+              <a href="/basket">BASKET</a>
+          </div>
+      </div>
 </body>
 
 </html>

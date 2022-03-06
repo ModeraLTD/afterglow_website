@@ -1,10 +1,60 @@
-<!DOCTYPE HTML> 
+{% load static %}
 
-<html lang = 'en' > 
-    <head> 
-        <title>Thanks</title> 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Payment Successful</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/palette.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
+        <link rel="stylesheet" href="{% static 'css/success.css' %}?{% now "U"%}"> 
+        <script src="{% static 'js/navbar.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/index.js' %}?{% now "U" %}"></script>
+        <script src="" async defer></script>
     </head>
-    <body> 
-        <h1> Thank You </h1>
+    <body>
+        <!-- Main body section -->
+        <div class="body">
+            <div class="navbar">
+                <div class="navitem filtered" onclick="openMenu();">
+                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+                </div>
+                <div class="navitem filtered">
+                    <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+                </div>
+                <div class="navitem">
+                    <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>
+                </div>
+            </div>
+            
+        <div class = "headers" > 
+            <h1> Thank You </h1>
+        </div>
+
+        <div class = "para" > 
+            <h4> Your booking was successful, you should receive a confirmation email shortly! Please keep the order ID. You will need the order ID to get your service done at the shop! </para> 
+        </div>
+        <button id="myButton" class="button" >Home</button>
+        <script type="text/javascript">
+                        document.getElementById("myButton").onclick = function () {
+                        location.href = '{% url 'website:index' %}';
+                     };
+                    </script>
+        <div class="menupopup" id="menupopup">
+            <button onclick="closeMenu();">X</button>
+            <div class="items">
+                <a href="/">HOME</a>
+                <a href="/store">AESTHETICS</a>
+                <a href="/basket">BASKET</a>
+            </div>
+        </div>
+
+
     </body>
 </html>

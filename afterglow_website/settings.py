@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-
 from pathlib import Path
 
 PROJECT_DIR = os.path.dirname(__file__)
@@ -131,13 +130,14 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
 
 #SMTP Configuration
-
-EMAIL_BACKEND = 'djang0.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smpt.gmail.com'
+import smtplib
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'royarnanta4@gmail.com'
-EMAIL_HOST_PASSWORD = 'Swanroy1961688'
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'skinandclearinfo@gmail.com'
+EMAIL_HOST_PASSWORD = 'Zarasajida123'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,6 +1,8 @@
+import django
 from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from django.conf import settings
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
@@ -130,7 +132,8 @@ def getTotalSlot_Time(request):
                 totalSlotTime += prod.slot_time 
         except Exception as e:
             print(str(e))
-
+    
+    return totalSlotTime, totalSlotTime2
 
 def toggleBasket(request):
     """Toggles a service to the user's basket"""
@@ -237,7 +240,6 @@ class BookingList(ListView):
     model = Booking  
  
     
-
 class CustomerFormView(FormView):
     template_name = 'test_form2.html'
     def get(self, request):
@@ -252,7 +254,7 @@ class CustomerFormView(FormView):
             new_customer = c.clean()
             request.session['name'] = form.cleaned_data['fullname']
             request.session['email'] = form.cleaned_data['email']
-            request.session['customer'] = new_customer
+            request.session['phone'] = form.cleaned_data['phone']
             return HttpResponseRedirect('customer/booking')
         args = {'form': form}
         return render(request, self.template_name, args) 
@@ -270,7 +272,8 @@ class BookingFormView(FormView):
             return HttpResponseRedirect('customer/book/payment')
         args = {'form':form}
         return render(request, self.template_name, args) 
-class BookingFormView3(FormView):
+booking_array = []
+class BookingFormView3(FormView): 
     template_name = 'test_form.html'
     def get(self, request):
         form = BookingForm()
@@ -280,12 +283,24 @@ class BookingFormView3(FormView):
         if form.is_valid():
             b = form.save()
             request.session['time'] = form.cleaned_data['Time_From']
-            request.session['new_booking'] = b.clean()
+            date = form.cleaned_data.get('date')
+            time_list = date.time_list
+            request.session['time_list'] = time_list
+            date= date.days
+            date = formatDay(date)
+            request.session['date'] = date
+            booking = Booking.objects.filter(uuid__exact = b.uuid)[0]
+            booking_array.append(booking)
             return HttpResponseRedirect('book/payment')
         args = {'form':form, 'Available': Available_Day.objects.all()}
-        return render(request, self.template_name, args)    
+        return render(request, self.template_name, args)      
 
 def payment(request): 
+    try: 
+        booking = booking_array[0]
+        phone = request.session['phone']
+    except: 
+        return HttpResponseRedirect("basket")
     items, totalPrice, totaltime = getBasketFormatted(request)
     time = request.session['time']
     time = TIMESLOT_LIST[time][1]
@@ -294,68 +309,92 @@ def payment(request):
     transaction_id = str(OrderID())
     first = request.session['name'][0]
     second = request.session['name'][1]
+    date = request.session['date']
     transaction_id = first + second + transaction_id
-    print(transaction_id)
+    request.session['transaction_id'] = transaction_id
     context = { 'totalPrice': totalPrice, 
                 'totalTime': totaltime,
                 'name': name,
                 'email': email,
-                'transaction_id': transaction_id,}
+                'transaction_id': transaction_id,
+                'date' : date,}
                 
     return render(request, 'payment.html', context)
 from .paypal import PayPalClient
-
+from .booking_slot import removeSlot
 def complete_order(request):
     items, totalPrice, totaltime = getBasketFormatted(request)
     PPClient = PayPalClient()
     body = json.loads(request.body)
     data = body['transaction_id']
-    requestorder = OrdersGetRequest(data)
-    response = PPClient.client.execute(requestorder)
-    total_paid = response.result.purchase_units[0].amount.value
-    if total_paid == totalPrice:
-        complete = True
-    else:
-        complete = False
-    booking = request.session['new_booking']
-    customer = request.session['customer']
-    baset = request.session['basket']
+    request.session['data'] = data
+    booking = booking_array[0]
+    phone = request.session['phone']
+    phone = request.session['phone']
+    basket = request.session['basket']
+    customer = Customer.objects.filter(phone__exact = phone)[0]
     order = Order.objects.create(
-        customer = customer, booking = booking, complete = complete, totalpaid = total_paid 
+        customer = customer, booking = booking, billing_status = True, totalpaid = totalPrice
     )
-    order_id = order.pk
+    order_id = order
     for item in basket: 
         prod = Service.objects.filter(prodID__exact=item)[0]
-        orderItem.objects.create(order = order_id, service = prod, transaction_id = data)
-        
-        
+        orderItem.objects.create(order = order, service = prod, transaction_id = data)
+    time = request.session['time'] 
+    booked = Available_Day.objects.filter(time_list__exact = time)[0] 
+    totalSlotTime, totalSlotTime2 = getTotalSlot_Time(request) 
+    date = request.session['date']
+    time_list = request.session['time_list']
+    if totalSlotTime2 != 0:
+        numberdec = (totalSlotTime2 / 0.5) - 1
+    else: 
+        numberdec = 0
+    remove_slot = time + totalSlotTime + numberdec
+    for v in range(time, remove_slot + 1):
+        time_list.remove(v)
+        print(v)
     return JsonResponse('payment Completed', safe = False)
+
     
-            
-    
-    
-#def removeSlot(self, complete):
-    if Order.complete == True:
-        time_list = Available_Day.time_list
-        if getTotalSlot_Time.totalSlotTime2 != 0:
-            numberdec = (getTotalSlot_Time.totalSlotTime2 / 0.5) - 1
-        else: 
-            numberdec = 0
-            remove_slot = Booking.Time_From + getTotalSlot_Time.totalSlotTime + numberdec
-            for v in range(Booking.Time_From, remove_slot + 1):
-                time_list.remove(v)
-    else:
-        ()
-def success(request, uid): 
-    template = render_to_string('email_template.html', {'name': request.session['name']})
-    email = EmailMessage(
-        'subject', 
-        template, 
-        settings.EMAIL_HOST_USER,
-        [request.session['email']]
+import socket
+socket.gethostbyname("www.google.com")  
+def payment_successful(request):
+    TIMESLOT_LIST = (
+        (0, '09:00'),
+        (1, '09:30'),
+        (2, '10:00'),
+        (3, '10:30'),
+        (4, '11:00'),
+        (5, '11:30'),
+        (6, '12:00'),
+        (7, '12:30'),
+        (8, '13:00'),
+        (9, '13:30'),
+        (10,'14:00'),
+        (11, '14:30'),
+        (12, '15:00'),
+        (13, '15:30'),
+        (14, '16:00'),
+        (15, '16:30'),
+        (16, '17:00'),
+        (17, '17:30'),
+        (18, '18:00')
     )
-    
-    email.fail_silently = False
-    email.send()
-    
-    project = Project.objects.get(id=uid)
+    d = dict(TIMESLOT_LIST)
+    time = request.session['time']
+    time = d[time]
+    date = request.session['date']
+    items, totalPrice, totaltime = getBasketFormatted(request)
+    args =  {'name': request.session['name'], 'ID': request.session['transaction_id'], 'time': time, 'date': date, 'items': items, 'totalPrice': totalPrice, 'totaltime': totaltime}
+    template = render_to_string('email_template.html', args)
+    send_mail( 
+                         'Booking successful confirmation!',
+                         template,
+                         settings.EMAIL_HOST_USER, 
+                         [request.session['email']],
+                         fail_silently= False
+                         )
+    request.session.flush()
+    return render(request, "success.html", {})
+                
+

@@ -28,13 +28,13 @@
 
 .main .contents .text {
     height: 100px;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }   
 
 /* effects */
 .shine {
-    background: linear-gradient(90deg, var(--affair) 0, #a474c2 10%, var(--affair) 20%);
+    background: linear-gradient(90deg, var(--darkgold) 0, #ebe8c4 10%, var(--darkgold) 20%);
     background-position: 0;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -69,7 +69,7 @@
     font-weight:normal;
     letter-spacing: 2px;
     font-family: 'Bebas';
-    color: var(--affair);
+    color: var(--gold);
     filter: brightness(1.25);
     font-size: 30px;
 }
@@ -100,7 +100,8 @@
 }
 
 .main .contents .buttons button.filled {
-    background-color: var(--affair);
+    background-color: transparent;
+    border: 2px solid whitesmoke;
 }
 
 .main .contents .buttons button.transparent {
@@ -116,7 +117,7 @@
     width: 150%;
     max-width: 102%;
     height: 50px;
-    background-color: #f1e4ef;
+    background-color: #a8a7a4;
     margin-top: -20px;
     margin-left: -5px;
     transform: rotate(5deg);
@@ -195,7 +196,7 @@ h1 {
 .popularServices .services .service button {
     width: 100%;
     border: none;
-    background-color: var(--affair);
+    background-color: var(--topaz);
     color: white;
     border-radius: 10px;
     padding: 5px;
