@@ -29,7 +29,7 @@
                     <img src="{% static 'css/images/menu.svg' %}" alt="menu">
                 </div>
                 <div class="navitem">
-                    <img src="{% static 'css/images/afterglowlogoxd.png' %}" alt="logo">
+                    <img src="{% static 'css/images/logo.png' %}" alt="logo">
                 </div>
                 <div class="navitem">
                     <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>                </div>
@@ -63,9 +63,10 @@
                 <h3 class="totalPrice" id="totalPrice">Total price: £{{ totalPrice }}</h3>
                 <h4 class="totaltime" id="totaltime">Estimated time for service: {{ totaltime }}</h4>
                 <div class="actions">
-                    <button id="book" onclick="window.open('customer', '_self');">Book now</button>
+                    <button id="book" onclick="window.open('customer', '_self');" disabled>Book now</button>
                     <button id="clear" onclick="clearServices();">Clear services</button>
                 </div>
+                <div class="warning">Booking services are down for maintainance — please call to book an appointment.<br>Apologies for any inconvenience caused.</div>
             </div>
 
             <!-- Footer -->

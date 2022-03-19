@@ -111,5 +111,6 @@ function deleteAllServices() {
 }
 
 $(document).ready(function() {
-    updateBookButton();
+    // updateBookButton();
+    console.warn("booking is disabled");
 })
