@@ -1,149 +1,187 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AfterGlow</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/palette.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'css/index.css' %}?{% now "U" %}">
-        <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now "U" %}">
-        <script src="{% static 'js/navbar.js' %}"></script>
-        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-        <script src="{% static 'js/index.js' %}?{% now "U" %}"></script>
-        <script src="" async defer></script>
-    </head>
-    <body>
-        <!-- Main body section -->
-        <div class="body">
-            <div class="navbar">
-                <div class="navitem filtered" onclick="openMenu();">
-                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
-                </div>
-                <div class="navitem filtered">
-                    <img src="{% static 'css/images/logo.png' %}" alt="logo">
-                </div>
-                <div class="navitem">
-                    <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>
-                </div>
-            </div>
-    
-            <!-- Main section -->
-            <div class="section main">
-                <div class="bgimg"></div>
-                <div id="contents" class="contents">
-                    <div class="text" style="display: none;">
-                        <h1 class="shine">DISCOVER</h1>
-                        <h2>POPULAR AESTHETICS</h2>
-                    </div>
-                    <div class="buttons" style="display: none;">
-                        <button onclick="window.open('/store', '_self');" class="filled">Book now</button>
-                        <button onclick="$('html, body').animate({
-                            scrollTop: $('.popularServices').offset().top
-                        }, 2000);" class="transparent">Our services</button>
-                    </div>
-                    <div class="text">
-                        <h4>Based in Luton, England</h4>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="sectiontransition"></div>
-    
-            <!-- About & Social media -->
-            <div class="section about">
-                <h1>Skin and Clear</h1>
-                <h3>With 7 years of relevant experience, Skin and Clear provides a wide range of advanced beauty, cosmetic and aesthetic treatments; all carried out to the highest professional standard.</h3>
-                <br/>
-                <h4>Follow us!</h4>
-                <div class="media_container">
-                    <!-- Facebook -->
-                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/facebook-new.png"/></a>
-    
-                    <!-- Instagram -->
-                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/instagram-new.png"/></a>
-    
-                    <!-- Twitter -->
-                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/twitter-circled.png"/></a>
-    
-                    <!-- Youtube -->
-                    <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png"/></a>
-                </div>
-            </div>
 
-            <!-- Popular services -->
-            <div class="section popularServices">
-                <h1>Our popular<br>services</h1>
-                <div class="services">
-                    <div class="service">
-                        <h3 class="name">Anti-wrinkle injections</h3>
-                        <h4 class="desc">Prevent formation of static wrinkles</h4>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                    <div class="service">
-                        <h3 class="name">Lip fillers (1/2ml)</h3>
-                        <h4 class="desc">Easily add volume to lips</h4>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                    <div class="service">
-                        <h3 class="name">Nasolabial fold fillers</h3>
-                        <h4 class="desc">Reduce wrinkle appearances and fine lines</h4>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                    <div class="service">
-                        <h3 class="name">Dermaplaning (+ deluxe)</h3>
-                        <h4 class="desc">Exfoliates skin</h4>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                    <div class="service">
-                        <h3 class="name">Microneedling</h3>
-                        <h4 class="desc">For smoother, finer and more toned skin</h4>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                </div>
-            </div>
+<head>
 
-            <!-- Available days -->
-            <div class="section available">
-                <h1>Upcoming available days</h1>
-                <div class="days">
-                    {% for i in days %}
-                        <div class="day">
-                            <h3>{{ i }}</h3>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-    
-            <!-- Footer -->
-            <div class="footer">
-                <div class="main">
-                    <h3>AfterGlow</h3>
-                    <div class="links">
-                        <a href="/">Home</a>
-                        <a href="/customer">Bookings</a>
-                        <a href="/contact">Contact us</a>
-                    </div>
-                </div>
-                <div class="copyright">
-                    <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
-                </div>
-            </div>
-        </div>
+    <meta charset="utf-8">
 
-        <!-- Menu popup -->
-        <div class="menupopup" id="menupopup">
-            <button onclick="closeMenu();">X</button>
-            <div class="items">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>AfterGlow</title>
+
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/palette.css' %}?{% now " U" %}">
+
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}?{% now " U" %}">
+
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}?{% now " U" %}">
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}?{% now " U" %}">
+
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}?{% now " U" %}">
+
+    <script src="{% static 'js/navbar.js' %}"></script>
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static 'js/index.js' %}?{% now " U" %}"></script>
+
+    <script src="" async defer></script>
+
+</head>
+
+<body>
+    <!-- Main body section -->
+    <div class="body">
+        <div class="navbar">
+            <div class="navitem filtered">
+                <img src="{% static 'css/images/logo.png' %}" alt="logo">
+            </div>
+            <ul class="navitems">
+                <a id="store" href="/store">Store</a>
                 <a href="/">HOME</a>
                 <a href="/store">AESTHETICS</a>
-                <a href="/basket">BASKET</a>
+                <a style="margin-right:0;" href="/basket">BASKET</a>
+            </ul>
+            <!-- <div class="navitem filtered" onclick="openMenu();">
+                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+                </div> -->
+        </div>
+
+        <!-- Main section -->
+        <div class="section main">
+            <div id="contents" class="contents">
+                <div class="text" style="display: none;">
+                    <h1 class="shine">DISCOVER</h1>
+                    <h2>POPULAR AESTHETICS</h2>
+                </div>
+                <div class="buttons" style="display: none;">
+                    <button onclick="window.open('/store', '_self');">Book now</button>
+                    <button onclick="$('html, body').animate({
+                            scrollTop: $('.popularServices').offset().top
+                        }, 2000);" style="background:#fff;color:#111;">Our services</button>
+                </div>
+                <div class="text">
+                    <h4>Based in Luton, England</h4>
+                </div>
             </div>
         </div>
-    </body>
+
+        <!-- <div class="sectiontransition"></div> -->
+
+        <!-- About & Social media -->
+        <div class="section about">
+            <h1>Skin and Clear</h1>
+            <div class="center"><h3>With 7 years of relevant experience, Skin and Clear provides a wide range of advanced beauty, cosmetic
+                and aesthetic treatments; all carried out to the highest professional standard.</h3></div>
+            <br />
+            <h1 id="follow">Follow us!</h1>
+            <div class="media_container">
+                <!-- Facebook -->
+                <a href=""><img src="https://img.icons8.com/doodle/48/000000/facebook-new.png" /></a>
+
+                <!-- Instagram -->
+                <a href=""><img src="https://img.icons8.com/doodle/48/000000/instagram-new.png" /></a>
+
+                <!-- Twitter -->
+                <a href=""><img src="https://img.icons8.com/doodle/48/000000/twitter-circled.png" /></a>
+
+                <!-- Youtube -->
+                <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png" /></a>
+            </div>
+        </div>
+
+        <!-- Popular services -->
+        <div class="section popularServices">
+            <h1 id="services">Our popular<br>services</h1>
+            <div class="services">
+                <div class="service">
+                    <div style="background: url(https://images.unsplash.com/photo-1581182800629-7d90925ad072?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Anti-wrinkle injections</h3>
+                        <p class="desc">Prevent formation of static wrinkles</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                     <div style="background: url(https://images.unsplash.com/photo-1581182682182-8d3d805268ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Lip fillers (1/2ml)</h3>
+                        <p class="desc">Easily add volume to lips</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                     <div style="background: url(https://images.unsplash.com/photo-1516220362602-dba5272034e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Nasolabial fold fillers</h3>
+                        <p class="desc">Reduce wrinkle appearances and fine lines</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                     <div style="background: url(https://images.unsplash.com/photo-1611367540679-d94566094025?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Dermaplaning (+ deluxe)</h3>
+                        <p class="desc">Exfoliates skin</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                     <div style="background: url(https://images.unsplash.com/photo-1556229165-8aa0ceaa93a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1187&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Microneedling</h3>
+                        <p class="desc">For smoother, finer and more toned skin</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Available days -->
+        <div class="section available">
+            <h1>Upcoming available days</h1>
+            <div class="days">
+                {% for i in days %}
+                <div class="day">
+                    <p>{{ i }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="mainf">
+                <h3>AfterGlow</h3>
+                <div class="links">
+                    <a style="margin-top: 0;" href="/">Home</a>
+                    <a href="/customer">Bookings</a>
+                    <a style="margin-bottom: 0;" href="/contact">Contact us</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Menu popup -->
+    <div class="menupopup" id="menupopup">
+        <button onclick="closeMenu();">X</button>
+        <div class="items">
+            <a href="/">Home</a>
+            <a href="/store">Aesthetics</a>
+            <a href="/basket">Basket</a>
+        </div>
+    </div>
+</body>
+
 </html>
