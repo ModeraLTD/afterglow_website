@@ -170,6 +170,7 @@ a {
 
 h1 {
   margin: 50px 0;
+  margin-top: 100px;
   font-size: 40px;
   font-family: "BigNoodleTitling";
   letter-spacing: 5px;
@@ -197,7 +198,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   font-family: "Poppins", sans-serif;
-  margin: 25px;
+  margin: 50px;
 }
 
 .popularServices .services .service {
@@ -234,6 +235,10 @@ h1 {
 
 .service p {
     opacity: .8;
+}
+
+#services {
+  margin-top: 100px;
 }
 
 /* .popularServices .services .service .name {
@@ -315,4 +320,18 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.skew {
+  transform: skewY(-2.5deg);
+}
+
+.noskew {
+  transform: skewY(2.5deg);
+}
+
+.wwa {
+  background-color: #d4d0c8;
+  padding: 25px 0;
+  padding-bottom: 100px;
 }

@@ -1,10 +1,12 @@
 /*    FOOTER    */
+
 .footer {
   font-family: "Poppins", sans-serif;
 }
 
 .footer .mainf {
   height: auto;
+  margin-top: 75px;
   padding: 50px;
   background-color: #1e1e1e;
 }

@@ -10,9 +10,35 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>AfterGlow</title>
+    <title>Skin & Clear - Beauty Asthetics & Hair Services</title>
 
-    <meta name="description" content="">
+    <meta name="description" content="Wide range of advanced beauty, cosmetic
+    and aesthetic treatments; all carried out to the highest professional standard.">
+
+    <meta property="og:locale" content="en_US" />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content="NSquare Edits - Quality Video Editing Services" />
+
+    <meta property="og:description"
+        content="Helping Content Creators automate the demanding task of editing videos, in fast, high quality, and affordable manner." />
+
+    <meta property="og:site_name" content="Skin & Care" />
+
+    <meta property="og:image" content="{% static 'css/images/logo.png' %}" />
+
+    <meta property="og:image:width" content="1000" />
+
+    <meta property="og:image:height" content="500" />
+
+    <meta property="og:image:type" content="image/png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:image" content="{% static 'css/images/logo.png' %}" />
+
+    <script src="https://kit.fontawesome.com/42509ed0ff.js" crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,6 +58,8 @@
 
     <script src="{% static 'js/index.js' %}?{% now " U" %}"></script>
 
+    <link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}" type="image/x-icon">
+
     <script src="" async defer></script>
 
 </head>
@@ -40,18 +68,18 @@
     <!-- Main body section -->
     <div class="body">
         <div class="navbar">
-            <div class="navitem filtered">
-                <img src="{% static 'css/images/logo.png' %}" alt="logo">
+            <div class="navitem">
+                <img class="logo" src="{% static 'css/images/logo.png' %}" alt="logo">
             </div>
             <ul class="navitems">
-                <a id="store" href="/store">Store</a>
                 <a href="/">HOME</a>
+                <a id="store" href="/store">Store</a>
                 <a href="/store">AESTHETICS</a>
                 <a style="margin-right:0;" href="/basket">BASKET</a>
             </ul>
-            <!-- <div class="navitem filtered" onclick="openMenu();">
-                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
-                </div> -->
+            <!-- <div class="hamburger navitem filtered" onclick="openMenu();">
+                <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+            </div> -->
         </div>
 
         <!-- Main section -->
@@ -62,13 +90,67 @@
                     <h2>POPULAR AESTHETICS</h2>
                 </div>
                 <div class="buttons" style="display: none;">
-                    <button onclick="window.open('/store', '_self');">Book now</button>
+                    <button style="background:#fff;color:#111;" onclick="window.open('/store', '_self');">Book
+                        now</button>
                     <button onclick="$('html, body').animate({
                             scrollTop: $('.popularServices').offset().top
-                        }, 2000);" style="background:#fff;color:#111;">Our services</button>
+                        }, 2000);">Our services</button>
                 </div>
                 <div class="text">
                     <h4>Based in Luton, England</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular services -->
+        <div class="section popularServices">
+            <h1 id="services">Our popular<br>services</h1>
+            <div class="services">
+                <div class="service">
+                    <div style="background: url(https://images.unsplash.com/photo-1581182800629-7d90925ad072?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center no-repeat; background-size: cover;"
+                        id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Anti-wrinkle injections</h3>
+                        <p class="desc">Prevent formation of static wrinkles</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                    <div style="background: url(https://images.unsplash.com/photo-1581182682182-8d3d805268ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80) center no-repeat; background-size: cover;"
+                        id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Lip fillers (1/2ml)</h3>
+                        <p class="desc">Easily add volume to lips</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                    <div style="background: url(https://images.unsplash.com/photo-1516220362602-dba5272034e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center no-repeat; background-size: cover;"
+                        id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Nasolabial fold fillers</h3>
+                        <p class="desc">Reduce wrinkle appearances and fine lines</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                    <div style="background: url(https://images.unsplash.com/photo-1611367540679-d94566094025?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80) center no-repeat; background-size: cover;"
+                        id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Dermaplaning (+ deluxe)</h3>
+                        <p class="desc">Exfoliates skin</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+                </div>
+                <div class="service">
+                    <div style="background: url(https://images.unsplash.com/photo-1556229165-8aa0ceaa93a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1187&q=80) center no-repeat; background-size: cover;"
+                        id="img1" class="service-img"></div>
+                    <div class="service-content">
+                        <h3 class="name">Microneedling</h3>
+                        <p class="desc">For smoother, finer and more toned skin</p>
+                        <button onclick="openCategory('HEALTH');">Learn more</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -77,9 +159,16 @@
 
         <!-- About & Social media -->
         <div class="section about">
-            <h1>Skin and Clear</h1>
-            <div class="center"><h3>With 7 years of relevant experience, Skin and Clear provides a wide range of advanced beauty, cosmetic
-                and aesthetic treatments; all carried out to the highest professional standard.</h3></div>
+            <div class="wwa skew">
+                <div class="noskew wwa-content">
+                    <h1>Skin and Clear</h1>
+                    <div class="center">
+                        <h3>With 7 years of relevant experience, Skin and Clear provides a wide range of advanced
+                            beauty, cosmetic
+                            and aesthetic treatments; all carried out to the highest professional standard.</h3>
+                    </div>
+                </div>
+            </div>
             <br />
             <h1 id="follow">Follow us!</h1>
             <div class="media_container">
@@ -94,54 +183,6 @@
 
                 <!-- Youtube -->
                 <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png" /></a>
-            </div>
-        </div>
-
-        <!-- Popular services -->
-        <div class="section popularServices">
-            <h1 id="services">Our popular<br>services</h1>
-            <div class="services">
-                <div class="service">
-                    <div style="background: url(https://images.unsplash.com/photo-1581182800629-7d90925ad072?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
-                    <div class="service-content">
-                        <h3 class="name">Anti-wrinkle injections</h3>
-                        <p class="desc">Prevent formation of static wrinkles</p>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                </div>
-                <div class="service">
-                     <div style="background: url(https://images.unsplash.com/photo-1581182682182-8d3d805268ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
-                    <div class="service-content">
-                        <h3 class="name">Lip fillers (1/2ml)</h3>
-                        <p class="desc">Easily add volume to lips</p>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                </div>
-                <div class="service">
-                     <div style="background: url(https://images.unsplash.com/photo-1516220362602-dba5272034e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
-                    <div class="service-content">
-                        <h3 class="name">Nasolabial fold fillers</h3>
-                        <p class="desc">Reduce wrinkle appearances and fine lines</p>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                </div>
-                <div class="service">
-                     <div style="background: url(https://images.unsplash.com/photo-1611367540679-d94566094025?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
-                    <div class="service-content">
-                        <h3 class="name">Dermaplaning (+ deluxe)</h3>
-                        <p class="desc">Exfoliates skin</p>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-                </div>
-                <div class="service">
-                     <div style="background: url(https://images.unsplash.com/photo-1556229165-8aa0ceaa93a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1187&q=80) center no-repeat; background-size: cover;" id="img1" class="service-img"></div>
-                    <div class="service-content">
-                        <h3 class="name">Microneedling</h3>
-                        <p class="desc">For smoother, finer and more toned skin</p>
-                        <button onclick="openCategory('HEALTH');">Learn more</button>
-                    </div>
-
-                </div>
             </div>
         </div>
 
@@ -160,7 +201,7 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="mainf">
-                <h3>AfterGlow</h3>
+                <h3>Skin & Clear</h3>
                 <div class="links">
                     <a style="margin-top: 0;" href="/">Home</a>
                     <a href="/customer">Bookings</a>
