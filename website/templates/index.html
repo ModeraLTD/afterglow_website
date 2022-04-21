@@ -19,10 +19,11 @@
 
     <meta property="og:type" content="website" />
 
-    <meta property="og:title" content="NSquare Edits - Quality Video Editing Services" />
+    <meta property="og:title" content="Skin & Clear - Beauty Asthetics & Hair Services" />
 
     <meta property="og:description"
-        content="Helping Content Creators automate the demanding task of editing videos, in fast, high quality, and affordable manner." />
+        content="Wide range of advanced beauty, cosmetic
+        and aesthetic treatments; all carried out to the highest professional standard." />
 
     <meta property="og:site_name" content="Skin & Care" />
 
@@ -65,25 +66,26 @@
 </head>
 
 <body>
+
     <!-- Main body section -->
     <div class="body">
-        <div class="navbar">
-            <div class="navitem">
-                <img class="logo" src="{% static 'css/images/logo.png' %}" alt="logo">
-            </div>
-            <ul class="navitems">
-                <a href="/">HOME</a>
-                <a id="store" href="/store">Store</a>
-                <a href="/store">AESTHETICS</a>
-                <a style="margin-right:0;" href="/basket">BASKET</a>
-            </ul>
-            <!-- <div class="hamburger navitem filtered" onclick="openMenu();">
-                <img src="{% static 'css/images/menu.svg' %}" alt="menu">
-            </div> -->
-        </div>
 
         <!-- Main section -->
         <div class="section main">
+            <div class="navbar">
+                <div class="navitem">
+                    <img class="logo" src="{% static 'css/images/logo.png' %}" alt="logo">
+                </div>
+                <ul class="navitems">
+                    <a href="/">HOME</a>
+                    <a id="store" href="/store">Store</a>
+                    <a href="/store">AESTHETICS</a>
+                    <a style="margin-right:0;" href="/basket">BASKET</a>
+                </ul>
+                <!-- <div class="hamburger navitem filtered" onclick="openMenu();">
+                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+                </div> -->
+            </div>
             <div id="contents" class="contents">
                 <div class="text" style="display: none;">
                     <h1 class="shine">DISCOVER</h1>
@@ -150,14 +152,11 @@
                         <p class="desc">For smoother, finer and more toned skin</p>
                         <button onclick="openCategory('HEALTH');">Learn more</button>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- <div class="sectiontransition"></div> -->
-
-        <!-- About & Social media -->
+        <!-- About -->
         <div class="section about">
             <div class="wwa skew">
                 <div class="noskew wwa-content">
@@ -169,22 +168,12 @@
                     </div>
                 </div>
             </div>
-            <br />
-            <h1 id="follow">Follow us!</h1>
-            <div class="media_container">
-                <!-- Facebook -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/facebook-new.png" /></a>
-
-                <!-- Instagram -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/instagram-new.png" /></a>
-
-                <!-- Twitter -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/twitter-circled.png" /></a>
-
-                <!-- Youtube -->
-                <a href=""><img src="https://img.icons8.com/doodle/48/000000/youtube-play--v2.png" /></a>
-            </div>
         </div>
+
+        <section class="testimonials">
+            <h1>Testimonials</h1>
+
+        </section>
 
         <!-- Available days -->
         <div class="section available">
@@ -200,17 +189,30 @@
 
         <!-- Footer -->
         <footer class="footer">
+            <div class="ftop"></div>
             <div class="mainf">
                 <h3>Skin & Clear</h3>
-                <div class="links">
-                    <a style="margin-top: 0;" href="/">Home</a>
-                    <a href="/customer">Bookings</a>
-                    <a style="margin-bottom: 0;" href="/contact">Contact us</a>
+                <div class="footer-links">
+                    <div class="links">
+                        <a style="margin-top: 0;" href="/">Home</a>
+                        <a href="/customer">Bookings</a>
+                        <a style="margin-bottom: 0;" href="/contact">Contact us</a>
+                    </div>
+                    <div class="links">
+                        <a style="margin-top: 0;" href="/">Instagram</a>
+                        <a href="/customer">Facebook</a>
+                        <a style="margin-bottom: 0;" href="/contact">Contact us</a>
+                    </div>
+                    <div class="links">
+                        <a style="margin-top: 0;" href="/">Store</a>
+                        <a href="/customer">Basket</a>
+                        <a style="margin-bottom: 0;" href="/contact">Aesthetics</a>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
+            <!-- <div class="copyright">
                 <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
-            </div>
+            </div> -->
         </footer>
     </div>
 
@@ -223,6 +225,7 @@
             <a href="/basket">Basket</a>
         </div>
     </div>
+
 </body>
 
 </html>

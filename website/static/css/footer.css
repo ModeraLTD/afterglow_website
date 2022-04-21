@@ -6,9 +6,9 @@
 
 .footer .mainf {
   height: auto;
-  margin-top: 75px;
   padding: 50px;
-  background-color: #1e1e1e;
+  padding-top: 100px;
+  background-color: #f4f0ec;
 }
 
 .footer .mainf h3 {
@@ -23,23 +23,23 @@
 
 .footer .mainf .links a {
   text-decoration: none;
-  color: white;
+  color: #111;
   text-transform: uppercase;
   font-size: 14px;
   margin: 12.5px 0;
 }
 
-.footer .copyright {
+.ftop {
+  margin-top: 75px;
+  background: #f4f0ec;
   width: 100%;
-  height: 50px;
-  background-color: #121313;
-  line-height: 50px;
-  vertical-align: middle;
+  height: 83px;
+  transform: translateY(50px) skewY(-2.5deg);
 }
 
-.footer .copyright h4 {
-  color: #393d3d;
-  margin: 0;
-  font-size: 12px;
-  padding-left: 25px;
+.footer-links{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 70%;
 }
