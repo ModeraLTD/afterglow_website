@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 * {
   margin: 0;
@@ -178,8 +178,9 @@ h1 {
 }
 
 .about h3 {
-  font-weight: normal;
-  width: 900px;
+  width:80%;
+  font-size: 2.5rem;
+  line-height: 4rem;
 }
 
 .about .media_container {
@@ -196,9 +197,12 @@ h1 {
 
 .popularServices .services {
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   font-family: "Poppins", sans-serif;
   margin: 50px;
+  padding-bottom: 50px;
 }
 
 .popularServices .services .service {
@@ -344,7 +348,40 @@ h1 {
 }
 
 .wwa {
-  background-color: #f4f0ec;
-  padding: 25px 0;
-  padding-bottom: 100px;
+  background: #ffeae8;
+  background-size: cover;
+  background-position: fixed;
+  padding: 200px 50px;
+}
+
+.ser {
+  width: 350px;
+  height: 600px;
+  border-radius: 1px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: .2s ease;
+  cursor: pointer;
+}
+
+.testimonial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.t-text {
+  width: 50%;
+  padding: 150px;
+  font-family: "Poppins", sans-serif;
+}
+
+.t-text p {
+  margin: 25px 0;
+  line-height: 30px;
+}
+
+.t-img {
+  height: 500px;
+  border-radius: 1px;
 }

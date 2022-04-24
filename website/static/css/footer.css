@@ -6,9 +6,9 @@
 
 .footer .mainf {
   height: auto;
-  padding: 50px;
-  padding-top: 100px;
-  background-color: #f4f0ec;
+  padding: 100px;
+  padding-left: 200px;
+  background-color: #ffeae8;
 }
 
 .footer .mainf h3 {
@@ -31,15 +31,44 @@
 
 .ftop {
   margin-top: 75px;
-  background: #f4f0ec;
+  background: #ffeae8;
   width: 100%;
   height: 83px;
   transform: translateY(50px) skewY(-2.5deg);
 }
 
-.footer-links{
+.mainf h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  margin: 0;
+  text-align: left;
+  letter-spacing: normal;
+}
+
+.flinks {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 70%;
+  margin-top: 75px;
+}
+
+.mainf ul {
+  list-style: none;
+  margin: 0 50px;
+  font-weight: 400;
+}
+
+.mainf ul h2 {
+  margin-bottom: 25px;
+}
+
+.mainf ul li {
+  margin: 12.5px 0;
+}
+
+.socials {
+  padding: 18px 0;
+}
+
+.socials i {
+  margin: 0 12.5px;
+  font-size: 1.3rem;
 }
