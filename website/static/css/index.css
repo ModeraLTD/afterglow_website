@@ -355,7 +355,7 @@ h1 {
 }
 
 .service {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .testimonial {
@@ -405,4 +405,42 @@ h1 {
 .t-text {
   padding-top: 0;
 }
+}
+
+@media only screen and (max-width: 750px) {
+  .wwa {
+    padding: 50px 25px;
+  }
+}
+
+@media only screen and (max-width: 625px) {
+  .wwa {
+    padding: 50px 0px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .main .contents .buttons {
+    flex-direction: column;
+  }
+  .main .contents .buttons button {
+    width: 75%;
+  }
+  #btn {
+    margin-bottom: 12.5px;
+  }
+}
+
+@media only screen and (max-width: 485px) {
+  .t-text {
+    padding: 25px;
+    padding-top: 0;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .about h3 {
+    font-size: 1.3rem;
+    line-height: 2.6rem;
+  }
 }

@@ -72,3 +72,33 @@
   margin: 0 12.5px;
   font-size: 1.3rem;
 }
+
+@media only screen and (max-width: 1150px) {
+  .footer .mainf {
+    padding: 75px 50px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .mainf ul {
+    margin: 0 25px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .flinks {
+    flex-direction: column;
+  }
+  .mainf ul {
+    margin: 25px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .flinks {
+    margin-top: 50px;
+  }
+  .mainf ul {
+    margin: 12.5px 0;
+  }
+}
