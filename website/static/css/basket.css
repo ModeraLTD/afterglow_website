@@ -1,10 +1,13 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
 .title {
     width: 100%;
 }
 
 .title h1 {
     text-transform: uppercase;
-    font-family: "vanilla_whale";
     text-align: center;
     letter-spacing: 5px;
     margin-top: 5px;
@@ -25,7 +28,6 @@
     min-height: 500px;
     padding: 20px;
     box-sizing: border-box;
-    font-family: "vanilla_whale";
 }
 
 .contents .serviceEmptyText {
@@ -66,6 +68,7 @@
 .contents .services .service .details h4 {
     margin: 0;
     float: left;
+    font-weight: normal;
 }
 
 .contents .services .service .details .name {
@@ -108,7 +111,6 @@
     color: white;
     border-radius: 5px;
     font-size: 14px;
-    font-family: "vanilla_whale";
     letter-spacing: 1px;
     outline: none;
     border: none;

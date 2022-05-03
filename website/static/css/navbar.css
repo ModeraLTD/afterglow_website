@@ -113,9 +113,16 @@ body {
   padding-top: 0;
 }
 
+#hamburger {
+  display: none;
+}
+
 @media only screen and (max-width: 1000px) {
   .navbar .navitems {
       display: none;
+  }
+  #hamburger {
+    display: inline-block;
   }
 }
 

@@ -204,10 +204,10 @@ h1 {
   margin: 50px;
   padding-bottom: 50px;
 }
-
+/* 
 .popularServices .services .service:hover {
   transform: scale(1.1);
-}
+} */
 
 .service-content {
   padding: 25px;

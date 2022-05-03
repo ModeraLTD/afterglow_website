@@ -29,7 +29,7 @@
                     <img src="{% static 'css/images/menu.svg' %}" alt="menu">
                 </div>
                 <div class="navitem">
-                    <img src="{% static 'css/images/logo.png' %}" alt="logo">
+                    <img style="height: 50px;" src="{% static 'css/images/logo.png' %}" alt="logo">
                 </div>
                 <div class="navitem">
                     <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>                </div>
@@ -70,19 +70,35 @@
             </div>
 
             <!-- Footer -->
-            <div class="footer">
-                <div class="main">
-                    <h3>AfterGlow</h3>
-                    <div class="links">
-                        <a href="/">Home</a>
-                        <a href="/404">Bookings</a>
-                        <a href="/contact">Contact us</a>
+            <footer class="footer">
+                <div class="ftop"></div>
+                <div class="mainf">
+                    <h1>Get In Touch</h1>
+                    <div class="flinks">
+                        <ul style="margin-left: 0; margin-top: 0;">
+                            <h2>Contact</h2>
+                            <a href="tel:201-469-7717">201-469-7717</a> <br>
+                            <a href="mailto:email@address.com">email@address.com</a>
+                        </ul>
+                        <ul>
+                            <h2>Address</h2>
+                            <li>1420 Willis Avenue </li>
+                            <li>Jacksonville, FL 32216</li>
+                        </ul>
+                        <ul style="margin-bottom: 0;">
+                            <h2>Socials</h2>
+                            <div class="socials">
+                                <a href="https://twitter.com"><i style="margin-left: 0;" class="fa-brands fa-twitter"></i></a>
+                                <a href="https://facbook.com"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                        </ul>
                     </div>
                 </div>
-                <div class="copyright">
+                <!-- <div class="copyright">
                     <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
-                </div>
-            </div>
+                </div> -->
+            </footer>
         </div>
 
         <!-- Menu popup -->
