@@ -52,10 +52,9 @@ body {
   justify-content: center;
   align-items: center;
   top: 0;
-  width: 100%;
+  width: 80%;
   height: 100%;
   background-color: black;
-  box-shadow: black 0px 0px 20px -10px;
 
   /* initially hidden */
   left: -100%;
@@ -87,7 +86,7 @@ body {
 }
 
 .menupopup .items h2 {
-  width: 100%;
+  width: 80%;
   color: white;
   font-size: 50px;
   font-family: "Bebas";

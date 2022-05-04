@@ -88,7 +88,7 @@
                     <a style="margin-right:0;" href="/basket">BASKET</a>
                 </ul>
                 <div id="hamburger" class="hamburger navitem filtered" onclick="openMenu();">
-                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
+                    <i style="color: #fff; font-size: 2rem;" class="fa-solid fa-bars"></i>
                 </div>
             </div>
             <!-- <div id="contents" class="contents"> -->
@@ -196,13 +196,13 @@
 
     <!-- Menu popup -->
     <div class="menupopup" id="menupopup">
-        <button onclick="closeMenu();">X</button>
+        <button style="color: #fff;" onclick="closeMenu();"><i style="font-size: 2rem;" class="fa-solid fa-xmark"></i></button>
         <div class="items">
             <a href="/">Home</a>
             <a href="/store">Aesthetics</a>
             <a href="/basket">Basket</a>
         </div>
-    </div>
+    </div> 
 
     <script>
 

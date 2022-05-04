@@ -19,20 +19,25 @@
         <script src="{% static 'js/basket.js' %}?{% now "U" %}"></script>
         <script src="{% static 'notifs/index.var.js' %}?{% now "U" %}"></script>
         <script src="{% static 'js/storeBasket.js' %}?{% now "U" %}"></script>
+
+        <link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}" type="image/x-icon">
+        <script src="https://kit.fontawesome.com/42509ed0ff.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!-- Main body section -->
         <div class="body">
-            <!-- Navigation bar -->
-            <div class="navbar">
-                <div class="navitem" onclick="openMenu();">
-                    <img src="{% static 'css/images/menu.svg' %}" alt="menu">
-                </div>
+            <div id="navbar" class="navbar">
                 <div class="navitem">
-                    <img style="height: 50px;" src="{% static 'css/images/logo.png' %}" alt="logo">
+                    <img class="logo" src="{% static 'css/images/logo.png' %}" alt="logo">
                 </div>
-                <div class="navitem">
-                    <a href="/store"><img src="{% static 'css/images/store.svg' %}"/></a>                </div>
+                <ul class="navitems">
+                    <a href="/">HOME</a>
+                    <a id="store" href="/store">AESHTHETICS</a>
+                    <a style="margin-right:0;" href="/basket">BASKET</a>
+                </ul>
+                <div id="hamburger" class="hamburger navitem filtered" onclick="openMenu();">
+                    <i style="color: #111; font-size: 2rem;" class="fa-solid fa-bars"></i>
+                </div>
             </div>
 
             <div class="title">
@@ -60,7 +65,7 @@
 
                 <div class="separator"></div>
 
-                <h3 class="totalPrice" id="totalPrice">Total price: £{{ totalPrice }}</h3>
+                <h3 class="totalPrice" style="margin-top: 50px;" id="totalPrice">Total price: £{{ totalPrice }}</h3>
                 <h4 class="totaltime" id="totaltime">Estimated time for service: {{ totaltime }}</h4>
                 <div class="actions">
                     <button id="book" onclick="window.open('customer', '_self');" disabled>Book now</button>
@@ -75,17 +80,17 @@
                 <div class="mainf">
                     <h1>Get In Touch</h1>
                     <div class="flinks">
-                        <ul style="margin-left: 0; margin-top: 0;">
+                        <ul style="margin-left: 0; padding-left: 0; margin-top: 0;">
                             <h2>Contact</h2>
-                            <a href="tel:201-469-7717">201-469-7717</a> <br>
-                            <a href="mailto:email@address.com">email@address.com</a>
+                            <a style="font-family: Poppins;" href="tel:201-469-7717">201-469-7717</a> <br>
+                            <a style="font-family: Poppins;" href="mailto:email@address.com">email@address.com</a>
                         </ul>
-                        <ul>
+                        <ul  style="padding-left: 0;">
                             <h2>Address</h2>
                             <li>1420 Willis Avenue </li>
                             <li>Jacksonville, FL 32216</li>
                         </ul>
-                        <ul style="margin-bottom: 0;">
+                        <ul style="margin-bottom: 0; padding-left: 0;">
                             <h2>Socials</h2>
                             <div class="socials">
                                 <a href="https://twitter.com"><i style="margin-left: 0;" class="fa-brands fa-twitter"></i></a>
@@ -94,7 +99,7 @@
                             </div>
                         </ul>
                     </div>
-                </div>
+                </div> 
                 <!-- <div class="copyright">
                     <h4>© AFTERGLOW. ALL RIGHTS RESERVED</h4>
                 </div> -->
@@ -103,12 +108,12 @@
 
         <!-- Menu popup -->
         <div class="menupopup" id="menupopup">
-            <button onclick="closeMenu();">X</button>
+            <button style="color: #fff;" onclick="closeMenu();"><i style="font-size: 2rem;" class="fa-solid fa-xmark"></i></button>
             <div class="items">
-                <a href="/">HOME</a>
-                <a href="/store">AESTHETICS</a>
-                <a href="/basket">BASKET</a>
+                <a href="/">Home</a>
+                <a href="/store">Aesthetics</a>
+                <a href="/basket">Basket</a>
             </div>
-        </div>
+        </div> 
     </body>
 </html>

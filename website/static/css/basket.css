@@ -1,133 +1,181 @@
 * {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .title {
-    width: 100%;
+  width: 100%;
 }
 
 .title h1 {
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 5px;
+  margin: 50px 0;
 }
 
 .separator {
-    width: 75%;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.226);
-    margin: 0 auto;
+  width: 75%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.226);
+  margin: 0 auto;
 }
-
 
 /* BASKET */
 .contents {
-    width: 100%;
-    min-height: 500px;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 0 150px;
+  padding-top: 0;
+  box-sizing: border-box;
 }
 
 .contents .serviceEmptyText {
-    width: 100%;
-    font-size: 16px;
-    color: gray;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    font-weight: 0;
+  width: 100%;
+  font-size: 16px;
+  color: gray;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-weight: 0;
 }
 
 .contents .serviceEmptyText.hidden {
-    display: none;
+  display: none;
 }
 
 .contents .services {
-    width: 100%;
+  width: 100%;
 }
 
 .contents .services .service {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .contents .services .service:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.025);
+  background-color: rgba(0, 0, 0, 0.025);
 }
 
 .contents .services .service .details {
-    flex-grow: 2;
+  flex-grow: 2;
 }
 
 .contents .services .service .details h4 {
-    margin: 0;
-    float: left;
-    font-weight: normal;
+  margin: 0;
+  float: left;
+  font-weight: normal;
 }
 
 .contents .services .service .details .name {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .contents .services .service .details .price {
-    font-size: 12px;
-    color: rgba(128, 128, 128, 0.61);
-    margin-top: 3px;
-    font-weight: 0;
+  font-size: 12px;
+  color: rgba(128, 128, 128, 0.61);
+  margin-top: 3px;
+  font-weight: 0;
 }
 
 .contents .services .service .details .price::before {
-    content: '£';
+  content: "£";
 }
 
 .contents .services .service .remove {
-    width: 16px;
-    height: 16px;
-    padding: 8px;
-    background-image: url('images/red-x.svg');
-    background-size: cover;
-    border: none;
-    background-color: transparent;
-    margin-top: auto;
-    margin-bottom: auto;
+  width: 16px;
+  height: 16px;
+  padding: 8px;
+  background-image: url("images/red-x.svg");
+  background-size: cover;
+  border: none;
+  background-color: transparent;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .contents .actions {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .contents .actions button {
-    padding: 5px 15px;
-    box-sizing: border-box;
-    color: white;
-    border-radius: 5px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    outline: none;
-    border: none;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 #book {
-    flex-grow: 2;
-    background-color:rgb(27, 116, 199);
-    transition: 0.5s ease;
+  flex-grow: 2;
+  background-color: rgb(27, 116, 199);
+  transition: 0.5s ease;
 }
 
 #book:disabled {
-    background-color:rgb(98, 141, 180);
+  background-color: rgb(98, 141, 180);
 }
 
 #clear {
-    background-color: transparent;
-    border: 1px solid rgb(27, 116, 199);
-    color: rgb(27, 116, 199);
+  background-color: transparent;
+  border: 1px solid rgb(27, 116, 199);
+  color: rgb(27, 116, 199);
+}
+
+a {
+  text-decoration: none;
+  color: #111;
+  font-family: "BigNoodleTitling";
+}
+
+.navitems {
+  font-family: "BigNoodleTitling";
+}
+
+.navitems a {
+  margin: 0px 30px;
+  position: relative;
+}
+
+.navitems a:after {
+  content: "";
+  position: absolute;
+  background: #111;
+  height: 1px;
+  width: 0;
+  left: 0;
+  bottom: 0px;
+  transition: 0.2s linear;
+}
+
+.navitems a:hover:after {
+  width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+  .contents {
+    width: 100%;
+    padding: 25px;
+    padding-top: 0;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .flinks {
+    flex-direction: column;
+  }
+  .mainf ul {
+    margin: 25px 0;
+    padding: 0;
+  }
 }
