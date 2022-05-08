@@ -44,7 +44,22 @@ def index(request):
 
 def store(request):
     basketIfNotExists(request)
-    services = Service.objects.all()
+
+    params = request.GET.dict()
+    if 'page' not in params.keys():
+        page = 'aesthetics'
+    else:
+        page = params['page']
+    
+    print(page)
+    
+    if page == "aesthetics":
+        services = Service.objects.all()
+    else:
+        """
+        [!] Replace with the relevant models
+        """
+        services = Service.objects.all()
 
     # format twice for button
     # if prod is in basket

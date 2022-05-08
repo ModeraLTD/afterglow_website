@@ -2,6 +2,12 @@ const urlParams = new URLSearchParams(window.location.search);
 const fadeSpeed = 50;
 
 var active_cat = urlParams.get("category");
+var currentPage = urlParams.get("page");
+
+if (currentPage == null) {
+    currentPage = "aesthetics";
+}
+
 var cat_index = getCatIndex(active_cat);
 
 // code -> index
@@ -92,6 +98,7 @@ $(document).ready(function() {
     active_cat = getCatCode(cat_index);
 
     updateCatName();
+    $("#page").text(currentPage.toUpperCase());
     $(".category").hide()
     $("#" + active_cat).show();
 });
